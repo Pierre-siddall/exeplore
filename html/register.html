@@ -1,0 +1,23 @@
+{% extends "main/header.html" %}
+
+{% block content %} 
+
+{% load crispy_forms_tags %}         
+
+<!--Register--> 
+<div class="container py-5">
+	<h1>Register</h1>
+	<form method="POST"> <!-- need an action to send information to login.py file??? -->
+		{% csrf_token %} <!-- i dont know what this means -->
+		{{ register_form|crispy }} <!-- or this --><br>
+		<input type="text" name="email">Email</input><br>
+		<input type="text" name="first">First name</input><br>
+		<input type="text" name="last">Last name</input><br>
+		<input type="text" name="password">Password</input><br>
+		<input type="text" name="confirm">Confirm password</input><br>
+		<button class="btn btn-primary" type="submit">Register</button>
+	</form>
+	<p class="text-center">If you already have an account, <a href="/login">login</a> instead.</p>
+</div>
+
+{% endblock %}
