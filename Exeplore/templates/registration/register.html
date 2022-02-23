@@ -11,12 +11,12 @@
 	<form method="POST"> <!-- need an action to send information to login.py file??? -->
 		{% csrf_token %} <!-- i dont know what this means -->
 		{{ register_form|crispy }} <!-- or this --><br>
-		<input type="text" placeholder="Enter email" name="email" required><br>
-		<input type="text" placeholder="Enter first name" name="first" required>First name</input><br>
-		<input type="text" placeholder="Enter last name" name="last" required>Last name</input><br>
-		<input type="text" placeholder="Enter username" name="Username" required>Username</input><br>
-		<input type="text" placeholder="Enter password" name="password" required>Password</input><br>
-		<input type="text" placeholder="Confirm password" name="confirm" required>Confirm password</input><br>
+		<input type="text" placeholder="Enter email" name="email" required>Email<br>
+		<input type="text" placeholder="Enter first name" name="first" required>First name<br>
+		<input type="text" placeholder="Enter last name" name="last" required>Last name<br>
+		<input type="text" placeholder="Enter username" name="Username" required>Username<br>
+		<input type="text" placeholder="Enter password" name="password" required>Password<br>
+		<input type="text" placeholder="Confirm password" name="confirm" required>Confirm password<br>
 		<button class="btn btn-primary" type="submit">Register</button>
 	</form>
 	<p class="text-center">If you already have an account, <a href="/login">login</a> instead.</p>
