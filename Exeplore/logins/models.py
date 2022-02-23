@@ -1,8 +1,6 @@
 from django.db import models
 
-# Create your models here.
-<<<<<<< HEAD
-=======
+
 class User(models.Model):
     id = models.IntegerField("user ID number", primary_key = True)
     first_name = models.CharField("user's first name", max_length = 100)
@@ -16,4 +14,3 @@ class Player(models.Model):
     badges = models.ForeignKey(Badges, on_delete = models.CASCADE, verbose_name = "list of badges this user has earned")
     visits = models.ForeignKey(Visits, on_delete = models.CASCADE, verbose_name = "list of visits for this user")
     score = models.IntegerField("total score for this user")
->>>>>>> parent of 16e8881 (Merge pull request #8 from jennischofield/main)
