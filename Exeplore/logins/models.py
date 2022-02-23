@@ -1,10 +1,5 @@
 from django.db import models
 
-<<<<<<< HEAD
-# Create your models here.
-=======
-
->>>>>>> 6545483f711f5e47b007dd39e3d0aa427afde3fb
 class User(models.Model):
     id = models.IntegerField("user ID number", primary_key = True)
     first_name = models.CharField("user's first name", max_length = 100)
