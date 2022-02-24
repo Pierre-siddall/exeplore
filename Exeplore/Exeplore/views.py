@@ -22,7 +22,7 @@ def register(request):
     form = SignUpForm()
     return render(request=request, template_name="registration/register.html", context={"register_form": form})
 
-def login(request):
+def login_view(request):
     if request.method == "POST":
         Authform = AuthenticationForm(request, data=request.POST)
         if Authform.is_valid():
@@ -34,10 +34,10 @@ def login(request):
                 messages.info(request, "logged in as", Uname, ".")
                 return redirect("logins:home")
             else:
-                messages.error("Invalid username and/or password")
+                messages.error(request, "Invalid username and/or password")
         else:
-            messages.error("Invalid username and/or password")
+            messages.error(request, "Invalid username and/or password")
     Authform = AuthenticationForm()
-    return render(request=request, template_name="templates/registration/login.html", context={"login_form": Authform})
+    return render(request=request, template_name="registration/login.html", context={"login_form": Authform})
 
 
