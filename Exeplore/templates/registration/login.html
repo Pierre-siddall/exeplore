@@ -1,4 +1,4 @@
-{% extends 'registration/header.html' %}
+{% extends 'templates/header.html' %}
 
 <!-- this will need to be created, an html for a navigaion bar-->
 {% include 'templates/includes/navbar.html' %}
@@ -10,6 +10,7 @@
 <nav class="navbar navbar-expand-sm navbar-light bg-light"></nav>
 <div class="container">
     <!-- Login form -->
+    <h1>Login</h1>
     <form method="POST">
         {% csrf_token %}
         {{ login_form|crispy }}
