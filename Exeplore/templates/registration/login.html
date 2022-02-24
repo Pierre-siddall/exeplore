@@ -10,13 +10,6 @@
 <nav class="navbar navbar-expand-sm navbar-light bg-light"></nav>
 <div class="container">
     <!-- Login form -->
-    <h1>Login</h1>
-    <label for="Username">Username</label>
-    <input type="text" placeholder="Enter Username" name="Username" required>
-    <br>
-    <label for ="password">Password</label>
-    <input type="password" placeholder="Enter Password" name="password" required>
-    <br>
     <form method="POST">
         {% csrf_token %}
         {{ login_form|crispy }}
