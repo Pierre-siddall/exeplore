@@ -4,6 +4,22 @@
 <h1 align="center">Welcome home</h1>
 <!-- home stuff goes here, discuss on friday -->
     {% load static %}
+
+    <div class="topnav">
+        <a href="#home" class="active">Logo</a>
+        <!-- Navigation links (hidden by default) -->
+        <div id="links">
+            <a href="#scan">Scan Location</a>
+            <a href="#visits">Where You've Been</a>
+            <a href="#badges">Achievements</a>
+            <a href="#settings">Settings</a>
+        </div>
+        <!-- "Hamburger menu" / "Bar icon" to toggle the navigation links -->
+        <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+            <i class="fa fa-bars"></i>
+        </a>
+    </div>
+
     <img src="{% static 'images/campus.gif' %}" align="left">
     <button><img src="{% static 'images/qr.png' %}" align="right" width="280" height="280"></button>
     <button><img src="{% static 'images/badges.png' %}" align="right" width="280" height="280"></button>
