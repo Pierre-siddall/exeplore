@@ -1,19 +1,13 @@
 {% extends 'registration/header.html' %}
-
-<!-- this will need to be created, an html for a navigaion bar-->
-{% include 'templates/includes/navbar.html' %}
 {% load static %}
-
-<!-- this will need to be created, an html for a navigaion bar-->
 {% block content %}
-<!-- Simulate a smartphone / tablet look -->
-<div class="mobile-container">
-    <!-- Top Navigation Menu -->
+<div class="mobile-container"> <!-- mobile-container to look like a phone -->
+    <!-- navigation -->
     <div class="topnav" id="links">
-            <button class="icon"><img src="{% static 'images/qr.png' %}" width="50"></button><!--
-            --><button class="icon"><img src="{% static 'images/locations.png' %}" width="50"></button><!--
-            --><button class="icon"><img src="{% static 'images/badges.png' %}" width="50"></button><!--
-            --><button class="icon"><img src="{% static 'images/settings.png' %}" width="50"></button>
+            <button class="icon"><img src="{% static 'images/qr.png' %}"></button><!--
+            --><button class="icon"><img src="{% static 'images/locations.png' %}"></button><!--
+            --><button class="icon"><img src="{% static 'images/badges.png' %}"></button><!--
+            --><button class="icon"><img src="{% static 'images/settings.png' %}"></button>
     </div>
     <div>
         <h1>Welcome!</h1>
