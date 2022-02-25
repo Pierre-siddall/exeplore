@@ -9,21 +9,16 @@
 <!-- registration form -->
 <div class="container py-5">
 	<h1>Register</h1>
-	<form method="POST"> <!-- need an action to send information to login.py file??? -->
-		{% csrf_token %} <!-- i dont know what this means -->
+	<form method="POST">
+		{% csrf_token %}
 		{{ register_form|crispy }}
-		<!-- <br>
-		<input type="text" placeholder="Enter email" name="email" required>Email<br>
-		<input type="text" placeholder="Enter first name" name="first" required>First name<br>
-		<input type="text" placeholder="Enter last name" name="last" required>Last name<br>
-		<input type="text" placeholder="Enter username" name="Username" required>Username<br>
-		<input type="text" placeholder="Enter password" name="password" required>Password<br>
-		<input type="text" placeholder="Confirm password" name="confirm" required>Confirm password<br>
-		-->
 		<button class="btn btn-primary" type="submit">Register</button>
 	</form>
 	<p class="text-center">If you already have an account, <a href="/login">login</a> instead.</p>
-	<!-- what url do i need to send them to a login page-->
+	<script>
+		var email = document.getElementById('id_email');
+		email.pattern = "[a-z0-9._%+-]+@exeter.ac.uk$";
+	</script>
 </div>
 
 {% endblock %}
