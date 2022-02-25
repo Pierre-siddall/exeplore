@@ -32,6 +32,6 @@ def login(request):
         else:
             messages.error("Invalid username and/or password")
     Authform = AuthenticationForm()
-    return render(request=request, template_name="templates/registration/login.html", context={"login_form": Authform})
+    return render(request=request, template_name="registration/login.html", context={"login_form": Authform})
 
 
