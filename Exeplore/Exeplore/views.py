@@ -8,21 +8,15 @@ def register(request):
     if request.method == "POST":
         form = SignUpForm(request.POST)
         if form.is_valid():
-            # login needs to happen
             form.save()
-            username = form.cleaned_data.get('username')
-            raw_password = form.cleaned_data.get('password1') #Is this secure??
-            user = authenticate(username = username, password = raw_password)
-            login(request, user)
             messages.success(request, "Registration successful.")
-            return redirect('home') # This needs to redirect to the home page
-            # add to database
-            
-        messages.error(request, "Unsuccessful registration. Invalid information.")
+            return redirect("logins:index") # This needs to redirect to the home page
+        else:
+             messages.error(request, "Invalid form input")
     form = SignUpForm()
     return render(request=request, template_name="registration/register.html", context={"register_form": form})
 
-def login_view(request):
+def login(request):
     if request.method == "POST":
         Authform = AuthenticationForm(request, data=request.POST)
         if Authform.is_valid():
@@ -34,10 +28,10 @@ def login_view(request):
                 messages.info(request, "logged in as", Uname, ".")
                 return redirect("logins:home")
             else:
-                messages.error(request, "Invalid username and/or password")
+                messages.error("Invalid username and/or password")
         else:
-            messages.error(request, "Invalid username and/or password")
+            messages.error("Invalid username and/or password")
     Authform = AuthenticationForm()
-    return render(request=request, template_name="registration/login.html", context={"login_form": Authform})
+    return render(request=request, template_name="templates/registration/login.html", context={"login_form": Authform})
 
 
