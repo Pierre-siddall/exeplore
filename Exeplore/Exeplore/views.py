@@ -28,9 +28,9 @@ def login(request):
                 messages.info(request, "logged in as", Uname, ".")
                 return redirect("main:home")
             else:
-                messages.error(request, "Invalid username and/or password")
+                messages.error("Invalid username and/or password")
         else:
-            messages.error(request, "Invalid username and/or password")
+            messages.error("Invalid username and/or password")
     Authform = AuthenticationForm()
     return render(request=request, template_name="registration/login.html", context={"login_form": Authform})
 
