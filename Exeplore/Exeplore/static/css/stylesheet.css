@@ -25,3 +25,38 @@ span.password {
     float: right;
     padding-top: 12px;
 }
+
+/* general formatting */
+
+h1 {
+    text-align: center;
+}
+
+img#map {
+    width: 100%;
+}
+
+.mobile-container { /* put everything in a div with this class */
+    max-width: 480px;
+    margin: auto;
+    background-color: #555;
+    height: 500px;
+    color: white;
+    border-radius: 10px;
+}
+
+/* formatting for the menu bar */
+
+.topnav {
+    overflow: hidden;
+    background-color: #333;
+    position: relative;
+    height:50px;
+}
+
+button.icon {
+    width:25%;
+    padding:0%;
+    margin:0%;
+    border:0ch;
+}
