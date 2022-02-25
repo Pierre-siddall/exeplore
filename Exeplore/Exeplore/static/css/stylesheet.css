@@ -1,3 +1,28 @@
+/* --------- general formatting --------- */
+
+/* for viewing on mobile - all html goes in one big div of this class */
+.mobile-container {
+    max-width: 480px;
+    margin: auto;
+}
+
+/* for looking at it on a laptop */
+.container {
+    padding: 12px;
+}
+
+h1 {
+    text-align: center;
+}
+
+button:hover {
+    opacity: 0.5;
+}
+
+img#map {
+    width: 100%;
+}
+
 input[type=text],input[type=password] {
     width: 100%;
     padding: 12px 16px;
@@ -6,22 +31,34 @@ input[type=text],input[type=password] {
     border: 1px solid #006400;
     box-sizing: border-box;
 }
-button {
+
+/* for any button that is okay or submit or done or go */
+button.submit {
     background-color: #006400;
     color: white;
     padding: 12px 16px;
-    margin: 6px 0;
-    cursor: pointer;
+    margin: 0%;
+    border: 0ch;
     width: 100%;
 }
-button:hover {
-    opacity: 0.5;
-}
-.container {
-    padding: 12px;
+
+/* --------- formatting the menu bar --------- */
+
+.topnav {
+    overflow: hidden;
+    position: relative;
+    height:50px;
 }
 
-span.password {
-    float: right;
-    padding-top: 12px;
+button.icon {
+    width:25%;
+    padding:0%;
+    margin:0%;
+    border:0ch;
+    background-color: #006400;
+    color: white;
+}
+
+button.icon img {
+    width:50px;
 }

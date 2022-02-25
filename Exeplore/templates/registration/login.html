@@ -1,28 +1,18 @@
 {% extends 'registration/header.html' %}
-
-<!-- this will need to be created, an html for a navigaion bar-->
-{% include 'templates/includes/navbar.html' %}
-
 {% block content %}
 {% load crispy_forms_tags %}
 
-<!--Navbar-->
-<nav class="navbar navbar-expand-sm navbar-light bg-light"></nav>
-<div class="container">
-    <!-- Login form -->
+<div class="mobile-container">
+    <!-- login form -->
     <h1>Login</h1>
     <form method="POST">
         {% csrf_token %}
         {{ login_form|crispy }}
-        <button type="submit">Login</button>
+        <button class="submit" type="submit">Login</button>
     </form>
-</div>
-    
-</div>
-    <div class="container" style="background-color:#f1f1f1">
-        <!-- need URLs for sending to register and forgot password-->
+    <div>
         <p class="text-center">Don't have an account? <a href="/register">Create an account</a>.</p>
-        <span class="password">Forgot <a href="#">password?</a></span>
+        <p class="text-center">Forgot <a href="#">password?</a></p>
     </div>
 </div>
 
