@@ -1,10 +1,12 @@
-{% extends 'registration/header.html' %}
 
 <!-- this will need to be created, an html for a navigaion bar-->
-{% include 'templates/includes/navbar.html' %}
-
 {% block content %}
-
+<h1 align="center">Welcome home</h1>
 <!-- home stuff goes here, discuss on friday -->
-
+    {% load static %}
+    <img src="{% static 'images/campus.gif' %}" align="left">
+    <button><img src="{% static 'images/qr.png' %}" align="right" width="280" height="280"></button>
+    <button><img src="{% static 'images/badges.png' %}" align="right" width="280" height="280"></button>
+    <button><img src="{% static 'images/locations.png' %}" align="right" width="280" height="280"></button>
+    <button><img src="{% static 'images/settings.png' %}" align="right" width="280" height="280"></button>
 {% endblock %}

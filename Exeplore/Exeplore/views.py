@@ -10,7 +10,7 @@ def register(request):
         if form.is_valid():
             form.save()
             messages.success(request, "Registration successful.")
-            return redirect("logins:index") # This needs to redirect to the home page
+            return redirect("main:home") # This needs to redirect to the home page
         else:
              messages.error(request, "Invalid form input")
     form = SignUpForm()
@@ -26,7 +26,7 @@ def login(request):
             if user is not None:
                 login(request, user)
                 messages.info(request, "logged in as", Uname, ".")
-                return redirect("logins:home")
+                return redirect("main:home")
             else:
                 messages.error("Invalid username and/or password")
         else:
@@ -35,3 +35,5 @@ def login(request):
     return render(request=request, template_name="registration/login.html", context={"login_form": Authform})
 
 
+def home(request):
+    return render(request=request, template_name="registration/home.html")
