@@ -22,10 +22,10 @@ function initialiseMap(){
                     lat: position.coords.latitude,
                     lng: position.coords.longitude,
                 };
-                infoWin.setPosition(pos);
-                infoWin.setContent("Location Found.");
-                infoWin.open(map);
-                map.setCenter(pos);
+                const marker = new google.maps.Marker({
+                  position: pos,
+                      map: map,
+                });
             },
                 () => {
                 handleLocationError(true,infoWin,map.getCenter());
