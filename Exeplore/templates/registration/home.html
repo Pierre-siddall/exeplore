@@ -1,12 +1,7 @@
 {% extends 'registration/header.html' %}
 {% load static %}
 {% block content %}
-<html>
-<head>
-    <script src="{% static 'javascript/map.js' %}"></script>
-    <link rel="stylesheet" href="{% static 'css/showmap.css' %}">
-</head>
-<body>
+
 <div class="mobile-container"> <!-- mobile-container to look like a phone -->
     <!-- navigation -->
     <div class="topnav" id="links">
@@ -18,11 +13,9 @@
     <div id="location">
         <h1>Welcome!</h1>
         <div id="map"></div>
-        <script
-                src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCmLbmAbTlKJPB5N5bpwef5tfmn5DG_Y8c&callback=initialiseMap" async>
-        </script>
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCmLbmAbTlKJPB5N5bpwef5tfmn5DG_Y8c&callback=initialiseMap" async></script>
+        <script src="{% static 'javascript/map.js' %}"></script>
     </div>
 </div>
-</body>
-</html>
+
 {% endblock %}
