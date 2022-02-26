@@ -10,7 +10,7 @@ def register(request):
         if form.is_valid():
             form.save()
             messages.success(request, "Registration successful.")
-            return redirect("main:home") # This needs to redirect to the home page
+            return home(request) # This needs to redirect to the home page
         else:
              messages.error(request, "Invalid form input")
     form = SignUpForm()
@@ -26,7 +26,7 @@ def login_view(request):
             if user is not None:
                 login(request, user)
                 messages.info(request, "logged in as", Uname, ".")
-                return redirect("main:home")
+                return home(request)
             else:
                 messages.error(request,"Invalid username and/or password")
         else:
