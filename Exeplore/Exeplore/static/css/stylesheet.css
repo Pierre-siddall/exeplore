@@ -19,10 +19,6 @@ button:hover {
     opacity: 0.5;
 }
 
-img#map {
-    width: 100%;
-}
-
 input[type=text],input[type=password] {
     width: 100%;
     padding: 12px 16px;
