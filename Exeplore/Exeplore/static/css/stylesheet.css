@@ -3,35 +3,56 @@
 /* for viewing on mobile - all html goes in one big div of this class */
 .mobile-container {
     max-width: 480px;
+    padding: 12px;
     margin: auto;
 }
 
 /* for looking at it on a laptop */
 .container {
     padding: 12px;
+    margin: auto;
 }
 
 h1 {
     text-align: center;
 }
 
+p, label, div { /* default text colour */
+    color: #1D1B22;
+}
+
+/* to set colours */
+.cream {
+    color: #FFFCDC;
+    text-shadow: 0.25px 0.25px 4px #1D1B22;
+}
+.green {
+    color: #2EE29D;
+}
+.blue {
+    color: #276BC9;
+}
+.black {
+    color: #1D1B22;
+}
+
 button:hover {
     opacity: 0.5;
 }
 
-input[type=text],input[type=password] {
+input[type=text], input[type=password], input[type=email] {
     width: 100%;
     padding: 12px 16px;
     margin: 6px 0;
     display: inline-block;
-    border: 1px solid #006400;
+    border: 1px solid #276BC9;
     box-sizing: border-box;
 }
 
 /* for any button that is okay or submit or done or go */
 button.submit {
-    background-color: #006400;
-    color: white;
+    background-color: #276BC9;
+    color: #FFFCDC;
     padding: 12px 16px;
     margin: 0%;
     border: 0ch;
@@ -51,7 +72,7 @@ button.icon {
     padding:0%;
     margin:0%;
     border:0ch;
-    background-color: #006400;
+    background-color: #2EE29D;
     color: white;
 }
 

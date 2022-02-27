@@ -2,7 +2,8 @@
 {% load static %}
 {% block content %}
 
-<div class="mobile-container"> <!-- mobile-container to look like a phone -->
+<!-- mobile-container to look like a phone -->
+<div class="mobile-container" style="background-color: #2EE29D;">
     <!-- navigation -->
     <div class="topnav" id="links">
             <button class="icon"><img src="{% static 'images/qr.png' %}"></button><!--
@@ -11,7 +12,7 @@
             --><button class="icon"><img src="{% static 'images/settings.png' %}"></button>
     </div>
     <div id="location">
-        <h1>Welcome!</h1>
+        <h1 class="cream">Welcome!</h1>
         <div id="map"></div>
         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCmLbmAbTlKJPB5N5bpwef5tfmn5DG_Y8c&callback=initialiseMap" async></script>
         <script src="{% static 'javascript/map.js' %}"></script>
