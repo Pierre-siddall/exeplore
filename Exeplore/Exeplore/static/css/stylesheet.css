@@ -13,6 +13,8 @@
 
 h1 {
     text-align: center;
+    color: #FFFCDC;
+    text-shadow: 0.25px 0.25px 4px #1D1B22;
 }
 
 button:hover {
@@ -24,13 +26,13 @@ input[type=text],input[type=password] {
     padding: 12px 16px;
     margin: 6px 0;
     display: inline-block;
-    border: 1px solid #006400;
+    border: 1px solid #276BC9;
     box-sizing: border-box;
 }
 
 /* for any button that is okay or submit or done or go */
 button.submit {
-    background-color: #006400;
+    background-color: #276BC9;
     color: white;
     padding: 12px 16px;
     margin: 0%;
@@ -51,7 +53,7 @@ button.icon {
     padding:0%;
     margin:0%;
     border:0ch;
-    background-color: #006400;
+    background-color: #2EE29D;
     color: white;
 }
 
