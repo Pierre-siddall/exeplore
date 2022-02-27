@@ -4,7 +4,7 @@ function initialiseMap(){
     // Obtains a static map
     map=new google.maps.Map(document.getElementById("map"),{
         center:{lat:50.735,lng:-3.534},
-        zoom:6,
+        zoom:15,
     });
     infoWin=new google.maps.InfoWindow();
 
