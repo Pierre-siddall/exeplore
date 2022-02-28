@@ -3,6 +3,7 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth import login, authenticate
 from .forms import SignUpForm
+from visits.models import Badge, Location
 
 def register(request):
     if request.method == "POST":
@@ -45,7 +46,9 @@ def settings(request):
     return render(request=request, template_name="registration/settings.html")
 
 def locations(request):
-    return render(request=request, template_name="registration/locations.html")
+    data = Location.objects.all()
+    return render(request, "registration/locations.html", {'locations': data})
 
 def badges(request):
-    return render(request=request, template_name="registration/badges.html")
+    data = Badge.objects.all()
+    return render(request, "registration/badges.html", {'badges': data})

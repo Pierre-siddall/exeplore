@@ -11,8 +11,15 @@
         --><button class="icon"><a href="/badges"><img src="{% static 'images/badges.png' %}"></a></button><!--
         --><button class="icon"><a href="/settings"><img src="{% static 'images/settings.png' %}"></a></button>
     </div>
-    <div id="location">
+    <div id="badges">
         <h1 class="cream">Badges</h1>
+        {% if badges %}
+        {% for b in badges %}
+        <p>{{b.badge_name}}</p>
+        {% endfor %}
+        {% else %}
+        <h1>No Data</h1>
+        {% endif %}
     </div>
 </div>
     
