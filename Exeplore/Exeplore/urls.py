@@ -32,5 +32,6 @@ urlpatterns = [
     path('settings/', views.settings,name="settings"),
     path('locations/', views.locations,name="locations"),
     path('badges/', views.badges,name="badges"),
+    path('', views.splash, name="splash"),
 ]+ static(settings.MEDIA_URL, document_root= settings.MEDIA_ROOT)
 
