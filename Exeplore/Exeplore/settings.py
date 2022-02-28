@@ -29,6 +29,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'visits.apps.VisitsConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -37,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'Exeplore',
     'crispy_forms',
+    #'visits.apps.VisitsConfig'
 ]
 
 MIDDLEWARE = [
