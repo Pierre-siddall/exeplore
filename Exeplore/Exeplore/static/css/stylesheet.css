@@ -78,7 +78,7 @@ button.submit {
     height:50px;
 }
 
-button.icon {
+button.icon, a.icon {
     width:25%;
     padding:0%;
     margin:0%;
@@ -87,6 +87,6 @@ button.icon {
     color: white;
 }
 
-button.icon img {
+button.icon img, a.icon img {
     width:50px;
 }

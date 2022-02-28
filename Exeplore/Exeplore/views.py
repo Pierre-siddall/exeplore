@@ -40,3 +40,12 @@ def home(request):
 
 def splash(request):
     return render(request=request, template_name="registration/splash.html")
+
+def settings(request):
+    return render(request=request, template_name="registration/settings.html")
+
+def locations(request):
+    return render(request=request, template_name="registration/locations.html")
+
+def badges(request):
+    return render(request=request, template_name="registration/badges.html")
