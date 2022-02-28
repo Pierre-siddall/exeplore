@@ -13,6 +13,13 @@
     </div>
     <div id="location">
         <h1 class="cream">Locations</h1>
+        {% if locations %}
+        {% for l in locations %}
+        <p>{{l.location_name}}</p>
+        {% endfor %}
+        {% else %}
+        <h1>No Data</h1>
+        {% endif %}
     </div>
 </div>
     
