@@ -1,0 +1,19 @@
+{% extends 'registration/header.html' %}
+{% load static %}
+{% block content %}
+
+<!-- mobile-container to look like a phone -->
+<div class="mobile-container" style="background-color: #2EE29D;">
+    <!-- navigation -->
+    <div class="topnav" id="links">
+        <button class="icon"><a><img src="{% static 'images/qr.png' %}"></a></button><!--
+        --><button class="icon"><a href="/locations"> <img src="{% static 'images/locations.png' %}"></a></button><!--
+        --><button class="icon"><a href="/badges"><img src="{% static 'images/badges.png' %}"></a></button><!--
+        --><button class="icon"><a href="/settings"><img src="{% static 'images/settings.png' %}"></a></button>
+    </div>
+    <div id="location">
+        <h1 class="cream">Badges</h1>
+    </div>
+</div>
+    
+{% endblock %}
