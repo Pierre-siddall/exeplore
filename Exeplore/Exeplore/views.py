@@ -37,3 +37,6 @@ def login_view(request):
 
 def home(request):
     return render(request=request, template_name="registration/home.html")
+
+def splash(request):
+    return render(request=request, template_name="registration/splash.html")

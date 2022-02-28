@@ -1,6 +1,17 @@
 /* --------- general formatting --------- */
 
 /* for viewing on mobile - all html goes in one big div of this class */
+.button-container {
+    text-align: center;    
+}  
+#btn{
+    background-color: #2EE29D;
+    font-size: 25px;
+    border: 7px solid #276BC9;
+        width: 300px;  
+        height: 200px;  
+        padding-top: 100px;  
+}
 .mobile-container {
     max-width: 480px;
     padding: 12px;
