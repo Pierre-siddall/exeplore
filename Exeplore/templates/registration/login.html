@@ -1,8 +1,13 @@
 {% extends 'registration/header.html' %}
+{% load static %}
 {% block content %}
 {% load crispy_forms_tags %}
 
 <div class="mobile-container">
+    <!-- navigation -->
+    <div class="topnav" id="links">
+		<button class="icon"><a href="/settings"><img src="{% static 'images/settings.png' %}"></a></button>
+    </div>
     <!-- login form -->
     <h1 class="blue">Login</h1>
     <form method="POST">
