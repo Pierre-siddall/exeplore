@@ -9,6 +9,7 @@ class Location(models.Model):
     
     def __str__(self):
         return self.location_name
+
 class Badge(models.Model):
     PLATINUM = 'PT'
     GOLD = 'AU'
@@ -19,10 +20,10 @@ class Badge(models.Model):
         (GOLD, 'Gold'),
         (SILVER, 'Silver'),
         (BRONZE, 'Bronze') ]
-    badge_name = models.CharField(max_length = 200)
+    badge_name = models.CharField(max_length=200)
     description = models.CharField(max_length=300)
     tier = models.CharField(max_length=2, choices=TIERS, default=BRONZE,)
-    icon= models.FileField(upload_to='images/', null=True, verbose_name="icon for badge")
+    icon = models.FileField(upload_to='images/', null=True, verbose_name="icon for badge")
     def __str__(self):
         return self.badge_name
     
