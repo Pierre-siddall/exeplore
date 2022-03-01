@@ -5,9 +5,9 @@
     text-align: center;    
 }  
 #btn{
-    background-color: #2EE29D;
+    background-color: #8b329d;
     font-size: 25px;
-    border: 7px solid #276BC9;
+    border: 7px solid #2a4468;
         width: 300px;  
         height: 200px;  
         padding-top: 100px;  
@@ -37,14 +37,15 @@ p, label, div { /* default text colour */
     color: #FFFCDC;
     text-shadow: 0.25px 0.25px 4px #1D1B22;
 }
-.green {
-    color: #2EE29D;
-}
+
 .blue {
-    color: #276BC9;
+    color: #2a4468;
 }
 .black {
     color: #1D1B22;
+}
+.purple {
+    color: #8b329d;
 }
 
 button:hover {
@@ -62,8 +63,8 @@ input[type=text], input[type=password], input[type=email] {
 
 /* for any button that is okay or submit or done or go */
 button.submit {
-    background-color: #276BC9;
-    color: #FFFCDC;
+    background-color: #8b329d;
+    color: #b8b5b5;
     padding: 12px 16px;
     margin: 0%;
     border: 0ch;
@@ -83,7 +84,7 @@ button.icon, a.icon {
     padding:0%;
     margin:0%;
     border:0ch;
-    background-color: #2EE29D;
+    background-color: #8b329d;
     color: white;
 }
 
