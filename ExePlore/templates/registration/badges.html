@@ -17,8 +17,8 @@
         {% if badges %}
         {% for b in badges %}
         <p>
+            <img src="../../media/{{ b.icon }}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             {{b.badge_name}}
-            <img src="../../media/{{b.icon }}">
         </p>
         {% endfor %}
         {% else %}
