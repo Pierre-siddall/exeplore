@@ -88,6 +88,12 @@ button.icon, a.icon {
     color: white;
 }
 
-button.icon img, a.icon img {
+button.icon img, a.icon img, div#badges p img {
     width:50px;
+}
+
+div#badges p {
+    font-size: large;
+    text-indent: 2em;
+    color: #dcdada;
 }
