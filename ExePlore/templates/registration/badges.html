@@ -15,7 +15,10 @@
         <h1 class="grey">Badges</h1>
         {% if badges %}
         {% for b in badges %}
-        <p>{{b.badge_name}}</p>
+        <p>
+            {{b.badge_name}}
+            <img src="../../media/{{b.icon }}">
+        </p>
         {% endfor %}
         {% else %}
         <h1>No Data</h1>
