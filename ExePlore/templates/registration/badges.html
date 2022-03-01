@@ -3,7 +3,7 @@
 {% block content %}
 
 <!-- mobile-container to look like a phone -->
-<div class="mobile-container" style="background-color: #2EE29D;">
+<div class="mobile-container" style="background-color: #24436d;">
     <!-- navigation -->
     <div class="topnav" id="links">
         <button class="icon"><a><img src="{% static 'images/qr.png' %}"></a></button><!--
@@ -12,7 +12,7 @@
         --><button class="icon"><a href="/settings"><img src="{% static 'images/settings.png' %}"></a></button>
     </div>
     <div id="badges">
-        <h1 class="cream">Badges</h1>
+        <h1 class="grey">Badges</h1>
         {% if badges %}
         {% for b in badges %}
         <p>{{b.badge_name}}</p>
