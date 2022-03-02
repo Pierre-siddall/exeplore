@@ -22,6 +22,12 @@
         <p> <!-- list the location name -->
             <img src="../../media/{{ l.icon }}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             {{l.location_name}}
+            {% for v in visits %}
+            {% if v.location == l %}
+            - Visited!
+            {% else %}
+            {% endif %}
+            {% endfor %}
         </p>
         {% endfor %}
         {% else %}
