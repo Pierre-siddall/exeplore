@@ -3,24 +3,29 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import get_user_model
 from users.models import Player
+
 User = get_user_model()
+
 
 class SignUpForm(UserCreationForm):
     """This represents the User registration form"""
-    #adds help text to fields
+    # adds help text to fields
     first_name = forms.CharField(max_length=30, required=False, help_text='Optional.')
     last_name = forms.CharField(max_length=30, required=False, help_text='Optional.')
     email = forms.EmailField(max_length=254,
-    help_text='Required. Inform a valid UoE email address.')
+                             help_text='Required. Inform a valid UoE email address.')
+
     class Meta:
         model = User
-        fields = ('username', 'first_name', 'last_name', 'email', 'password1', 'password2', )
+        fields = ('username', 'first_name', 'last_name', 'email', 'password1', 'password2',)
+
 
 class PlayerForm(forms.ModelForm):
     """This class represents the Player registration form, an extension of the Signupform"""
+
     class Meta:
         model = Player
-        #imports the signupform, excludes the forms that the user doesn't need to see
-        #Doesn't use explicit fields as there's no fields for the player form to have that
-        #the sign up form doesn't have, and that can be changed upon registration
-        exclude = ('score', 'user', 'badges', 'visits' )
+        # imports the signupform, excludes the forms that the user doesn't need to see
+        # Doesn't use explicit fields as there's no fields for the player form to have that
+        # the sign up form doesn't have, and that can be changed upon registration
+        exclude = ('score', 'user', 'badges', 'visits')

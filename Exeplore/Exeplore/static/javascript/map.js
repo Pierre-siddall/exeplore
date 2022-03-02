@@ -1,3 +1,5 @@
+import {MarkerClusterer} from "@googlemap/markerclusterer"
+
 let map,infoWin
 
 function initialiseMap(){
@@ -116,7 +118,21 @@ function initialiseMap(){
             handleLocationError(false,infoWin,map.getCenter());
         }
     });
+
+    const markers= locations.map((position,i) => {
+        const marker=new google.maps.Marker({
+            position
+        });
+        marker.addListener("click",() =>{
+            infoWin.open(map,marker);
+        });
+        return marker;
+    });
+
+    new MarkerClusterer({markers,map});
 }
+
+const locations=[];//add the locations from text file in here
 
 function handleLocationError(browserHasGeolocation, infoWin, pos){
     infoWin.setPosition(pos);
