@@ -1,14 +1,15 @@
-{% extends 'registration/header.html' %}
-{% load static %}
-{% block content %}
+{% extends 'registration/header.html' %} <!-- use standard header -->
+{% load static %} <!-- for accessing the settings image -->
+{% block content %} <!-- begin content -->
 
-
+<!-- mobile-container to look like a phone -->
 <div class="mobile-container" style="background-color:#24436d;">
-    <!-- navigation -->
+    <!-- navigation bar has only settings -->
     <div class="topnav" id="links">
         <button class="icon"><a href="/settings"><img src="{% static 'images/settings.png' %}"></a></button>
     </div>
     <h1 class="grey">Welcome!</h1>
+    <!-- links to login and register pages -->
     <div class="button-container">
         <button class="login" type="login"><a href="/login">Login</a></p></button>
         <button class="register" type="register"><a href="/register">Register</a></p></button>
