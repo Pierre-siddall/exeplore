@@ -21,6 +21,44 @@
     <!-- links to login and register pages -->
     <!-- TODO: trigger the user being logged out -->
     <div class="main">
+        <div id="user_info">
+            <h3 class="grey">User Information: </h3>
+            <p> User Name: 
+            {% if user %}
+            {{user.first_name}}
+            {% else %}
+            No Name
+            {% endif %} </p>
+            <p> Level: 0</p>
+            
+            <p> Points:
+            {% if user.player %}
+            {{user.player.score}}
+            {% else %}
+            0
+            {% endif %}  </p>
+            <button class="change" type="change"><a href="/change">Change User Information</a></p></button>
+        </div>
+        <div id="badges_earned">
+            <h3 class="grey">Badges earned: </h3>
+            {% if earnedBadges %}
+            {% for eb in earnedBadges %}
+            {{eb.badge}}<br>
+            {% endfor %}
+            {% else %}
+            No badges earned yet!
+            {% endif %}
+        </div>
+        <div id="recent_vists">
+            <h3 class="grey">Places recently visited: </h3>
+            {% if visits %}
+            {% for v in visits %}
+            {{v.location}}<br>
+            {% endfor %}
+            {% else %}
+            No places visited yet!
+            {% endif %}
+        </div>
         <button class="logout" type="logout"><a href="/login">Log out</a></p></button>
         <button class="exit" type="exit"><a href="/splash">Exit</a></p></button>
     </div>

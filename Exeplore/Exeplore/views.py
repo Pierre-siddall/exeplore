@@ -7,7 +7,7 @@ from django.contrib.auth import login, authenticate, get_user_model
 from django.contrib.auth.models import Group, User
 
 from visits.models import Badge, Location
-from users.models import Player, EarnedBadge
+from users.models import Player, EarnedBadge, Visit
 
 from .forms import SignUpForm, PlayerForm
 def register(request):
@@ -71,7 +71,12 @@ def splash(request):
 
 def settings(request):
     """This function renders the settings page"""
-    return render(request=request, template_name="registration/settings.html")
+    name = request.session.get('username')
+    user = User.objects.get(username=name)
+    player = Player.objects.get(user=user)
+    earnedBadges = EarnedBadge.objects.filter(player=player)
+    visits = Visit.objects.filter(player=player)
+    return render(request, "registration/settings.html", {'user':user, 'earnedBadges':earnedBadges, 'visits':visits})
 
 def locations(request):
     """This function renders the locations page"""
