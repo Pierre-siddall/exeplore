@@ -1,6 +1,9 @@
+"""This file represents all the models needed for visits - Location and Badge"""
 from django.db import models
 
 class Location(models.Model):
+    """This class represents a Location, with accuracy enough for Google Maps API
+    It also allows uploading an image to be used as an icon"""
     latitude = models.DecimalField(max_digits=22, decimal_places=16, blank=False, null=False)
     #both of these are required for a location and can't be null
     longitude = models.DecimalField(max_digits=22, decimal_places=16, blank=False, null=False)
@@ -12,6 +15,8 @@ class Location(models.Model):
         return self.location_name
 
 class Badge(models.Model):
+    """This class represents a Badge, with the four classifications, as well
+    as a FileField used for uploading an icon"""
     PLATINUM = 'PT'
     GOLD = 'AU'
     SILVER = 'AG'
@@ -27,6 +32,3 @@ class Badge(models.Model):
     icon = models.FileField(upload_to='images/', null=True, verbose_name="icon for badge")
     def __str__(self):
         return self.badge_name
-    
-    #not quite sure how to implement requirements, prob something on the front end/middle
-    

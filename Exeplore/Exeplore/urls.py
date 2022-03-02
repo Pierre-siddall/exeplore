@@ -15,9 +15,9 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from . import views
 from django.conf import settings
 from django.conf.urls.static import static
+from . import views
 
 
 app_name="main"
@@ -34,4 +34,3 @@ urlpatterns = [
     path('badges/', views.badges,name="badges"),
     path('', views.splash, name="splash"),
 ]+ static(settings.MEDIA_URL, document_root= settings.MEDIA_ROOT)
-

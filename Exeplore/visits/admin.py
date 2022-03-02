@@ -27,7 +27,6 @@ class BadgeAdmin(admin.ModelAdmin):
     inlines = [EarnedBadgeInLine,  ]
 class VisitInLine(admin.StackedInline):
     """This class defines how a Visit should be displayed in
-    
     Django's admin"""
     model = Visit
     readonly_fields = ('visit_datetime', )
