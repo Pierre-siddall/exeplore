@@ -36,10 +36,13 @@
         </div>
         <div id="badges_earned">
             <h3 class="grey">Badges earned: </h3>
+            {% if earnedBadges %}
             {% for eb in earnedBadges %}
-            TEXT TEST
-            {{eb.badge}}
+            {{eb.badge}}<br>
             {% endfor %}
+            {% else %}
+            No badges earned yet!
+            {% endif %}
         </div>
         <div id="recent_vists">
             <h3 class="grey">Places recently visited: </h3>

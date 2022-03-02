@@ -70,7 +70,10 @@ def splash(request):
 def settings(request):
     """This function renders the settings page"""
     name = request.session.get('username')
-    return render(request=request, template_name="registration/settings.html")
+    user = User.objects.get(username=name)
+    player = Player.objects.get(user=user)
+    earnedBadges = EarnedBadge.objects.filter(player=player)
+    return render(request, "registration/settings.html", {'earnedBadges':earnedBadges})
 
 def locations(request):
     """This function renders the locations page"""
@@ -80,4 +83,5 @@ def locations(request):
 def badges(request):
     """This function renders the badges page"""
     data = Badge.objects.all()
+    name = request.session.get('username')
     return render(request, "registration/badges.html", {'badges': data})
