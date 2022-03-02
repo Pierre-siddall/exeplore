@@ -2,7 +2,7 @@
 
 /*--- standard background for all pages ---*/
 body {
-    background-image: url(https://media.discordapp.net/attachments/932752662317924354/948640118971985950/stars_bg.png);
+    background-image: url(../images/stars_bg.png);
     background-color: black;
 }
 
@@ -63,7 +63,7 @@ input[type=text], input[type=password], input[type=email] {
     padding: 12px 16px;
     margin: 6px 0;
     display: inline-block;
-    border: 1px solid #24436d;
+    border: 1px solid #000000;
     box-sizing: border-box;
 }
 

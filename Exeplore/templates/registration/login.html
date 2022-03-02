@@ -9,7 +9,7 @@
 		<button class="icon"><a href="/settings"><img src="{% static 'images/settings.png' %}"></a></button>
     </div>
     <!-- login form -->
-    <h1 class="blue">Login</h1>
+    <h1 class="white">Login</h1>
     <form method="POST">
         {% csrf_token %}
         {{ login_form|crispy }}
