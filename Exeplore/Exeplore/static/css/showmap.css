@@ -1,8 +1,9 @@
-#map {
+#map { /* map sizing */
     height: 800px;
     width: 100%;
 }
 
+/* the button to click when the user wants their location */
 .custom-map-control-button {
     background-color: #fff;
     border: 0;

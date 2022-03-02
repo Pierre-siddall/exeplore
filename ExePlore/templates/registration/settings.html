@@ -1,19 +1,25 @@
-{% extends 'registration/header.html' %}
-{% load static %}
-{% block content %}
+{% extends 'registration/header.html' %} <!-- use standard header -->
+{% load static %} <!-- for accessing the settings image -->
+{% block content %} <!-- begin content -->
 
 <!-- mobile-container to look like a phone -->
 <div class="mobile-container" style="background-color: #24436d;">
-    <!-- navigation -->
+    <!-- navigation bar -->
     <div class="topnav" id="links">
+        <!-- link to settings page i.e. this one -->
         <button class="icon"><a href="/settings"><img src="{% static 'images/settings.png' %}"></a></button><!--
+        TODO: open camera
         --><button class="icon"><a><img src="{% static 'images/qr.png' %}"></a></button><!--
+        link to locations page
         --><button class="icon"><a href="/locations"> <img src="{% static 'images/locations.png' %}"></a></button><!--
+        link to badges page
         --><button class="icon"><a href="/badges"><img src="{% static 'images/badges.png' %}"></a></button>
     </div>
     <div id="location">
         <h1 class="grey">Settings</h1>
     </div>
+    <!-- links to login and register pages -->
+    <!-- TODO: trigger the user being logged out -->
     <div class="main">
         <button class="logout" type="logout"><a href="/login">Log out</a></p></button>
         <button class="exit" type="exit"><a href="/splash">Exit</a></p></button>
