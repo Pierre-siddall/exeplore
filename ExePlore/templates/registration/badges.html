@@ -24,6 +24,12 @@
             <!-- badge image, some spacing, then the badge name -->
             <img src="../../media/{{ b.icon }}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             {{b.badge_name}}
+            {% for eb in earnedBadges %}
+            {% if eb.badge == b %}
+            - Collected!
+            {% else %}
+            {% endif %}
+            {% endfor %}
         </p>
         {% endfor %}
         {% else %}

@@ -19,7 +19,10 @@
         <h1 class="grey">Locations</h1>
         {% if locations %} <!-- checks data was loaded -->
         {% for l in locations %}
-        <p>{{l.location_name}}</p> <!-- list the location name -->
+        <p> <!-- list the location name -->
+            <img src="../../media/{{ l.icon }}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            {{l.location_name}}
+        </p>
         {% endfor %}
         {% else %}
         <h1>No Data</h1> <!-- in case no data was loaded -->

@@ -10,7 +10,7 @@
 		<button class="icon"><a href="/settings"><img src="{% static 'images/settings.png' %}"></a></button>
     </div>
 	<!-- registration form from forms.py -->
-	<h1 class="blue">Register</h1>
+	<h1 class="white">Register</h1>
 	<form method="POST">
 		{% csrf_token %}
 		{{register_form|crispy }} <!-- load in form -->
