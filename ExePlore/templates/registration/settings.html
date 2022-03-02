@@ -20,28 +20,24 @@
             <h3 class="grey">User Information: </h3>
             <p> User Name: 
             {% if user %}
-            {{user.first_name}}!
+            {{user.first_name}}
             {% else %}
             No Name
             {% endif %} </p>
             <p> Level: 0</p>
             
             <p> Points:
-            {% if player %}
-            {{user.player.points}}!
+            {% if user.player %}
+            {{user.player.score}}
             {% else %}
-            No Points
+            0
             {% endif %}  </p>
             <button class="change" type="change"><a href="/change">Change User Information</a></p></button>
         </div>
         <div id="badges_earned">
             <h3 class="grey">Badges earned: </h3>
             {% for eb in earnedBadges %}
-            {% if eb.badge == b %}
             {{eb.badge}}
-            {% else %}
-            NONE
-            {% endif %}
             {% endfor %}
         </div>
         <div id="recent_vists">

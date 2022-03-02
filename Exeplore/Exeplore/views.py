@@ -69,6 +69,7 @@ def splash(request):
 
 def settings(request):
     """This function renders the settings page"""
+    name = request.session.get('username')
     return render(request=request, template_name="registration/settings.html")
 
 def locations(request):
