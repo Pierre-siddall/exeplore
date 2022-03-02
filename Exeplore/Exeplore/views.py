@@ -80,8 +80,12 @@ def settings(request):
 
 def locations(request):
     """This function renders the locations page"""
-    data = Location.objects.all()
-    return render(request, "registration/locations.html", {'locations': data})
+    locations = Location.objects.all()
+    name = request.session.get('username')
+    user = User.objects.get(username=name)
+    player = Player.objects.get(user=user)
+    visits = Visit.objects.filter(player=player)
+    return render(request, "registration/locations.html", {'locations': locations, 'visits':visits})
 
 def badges(request):
     """This function renders the badges page"""
