@@ -3,10 +3,11 @@ login, and rendering of other pages"""
 from django.contrib.auth.forms import AuthenticationForm
 from django.shortcuts import render,redirect
 from django.contrib import messages
-from django.contrib.auth import login, authenticate
-from django.contrib.auth.models import Group
+from django.contrib.auth import login, authenticate, get_user_model
+from django.contrib.auth.models import Group, User
 
 from visits.models import Badge, Location
+from users.models import Player, EarnedBadge
 
 from .forms import SignUpForm, PlayerForm
 def register(request):
@@ -47,6 +48,7 @@ def login_view(request):
             if user is not None:
                 login(request, user)
                 messages.info(request, "logged in as", username, ".")
+                request.session['username'] = username
                 return redirect('/home/')
             else:
                 messages.error(request,"Invalid username and/or password")
@@ -59,7 +61,9 @@ def login_view(request):
 
 def home(request):
     """This function renders the home page"""
-    return render(request=request, template_name="registration/home.html")
+    name = request.session.get('username')
+    user = User.objects.get(username=name)
+    return render(request, "registration/home.html", {'user':user})
 
 def splash(request):
     """This function renders the splash page"""
@@ -76,5 +80,9 @@ def locations(request):
 
 def badges(request):
     """This function renders the badges page"""
-    data = Badge.objects.all()
-    return render(request, "registration/badges.html", {'badges': data})
+    badges = Badge.objects.all()
+    name = request.session.get('username')
+    user = User.objects.get(username=name)
+    player = Player.objects.get(user=user)
+    earnedBadges = EarnedBadge.objects.filter(player=player)
+    return render(request, "registration/badges.html", {'badges': badges, 'earnedBadges':earnedBadges})
