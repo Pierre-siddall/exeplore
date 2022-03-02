@@ -1,5 +1,11 @@
 /* --------- general formatting --------- */
 
+/*--- standard background for all pages ---*/
+body {
+    background-image: url(https://media.discordapp.net/attachments/932752662317924354/948640118971985950/stars_bg.png);
+    background-color: black;
+}
+
 /* for viewing on mobile - all html goes in one big div of this class */
 .button-container {
     text-align: center;    
