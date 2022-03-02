@@ -3,10 +3,11 @@ login, and rendering of other pages"""
 from django.contrib.auth.forms import AuthenticationForm
 from django.shortcuts import render,redirect
 from django.contrib import messages
-from django.contrib.auth import login, authenticate
-from django.contrib.auth.models import Group
+from django.contrib.auth import login, authenticate, get_user_model
+from django.contrib.auth.models import Group, User
 
 from visits.models import Badge, Location
+from users.models import Player, EarnedBadge
 
 from .forms import SignUpForm, PlayerForm
 def register(request):
@@ -47,6 +48,7 @@ def login_view(request):
             if user is not None:
                 login(request, user)
                 messages.info(request, "logged in as", username, ".")
+                request.session['username'] = username
                 return redirect('/home/')
             else:
                 messages.error(request,"Invalid username and/or password")
