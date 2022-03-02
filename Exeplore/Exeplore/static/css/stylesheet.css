@@ -13,7 +13,7 @@
         padding-top: 100px;  
 }
 .mobile-container {
-    max-width: 480px;
+    max-width: 600px;
     padding: 12px;
     margin: auto;
 }
@@ -95,5 +95,15 @@ button.icon img, a.icon img, div#badges p img {
 div#badges p {
     font-size: large;
     text-indent: 2em;
+    color: #dcdada;
+}
+
+button.icon img, i.icon img, div#location p img {
+    width:50px;
+}
+
+div#location p {
+    font-size: large;
+    text-indent: 2m;
     color: #dcdada;
 }
