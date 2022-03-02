@@ -8,11 +8,11 @@
     <div class="topnav" id="links">
 		<button class="icon"><a href="/settings"><img src="{% static 'images/settings.png' %}"></a></button>
     </div>
-    <!-- login form -->
+    <!-- login form from forms.py -->
     <h1 class="blue">Login</h1>
     <form method="POST">
         {% csrf_token %}
-        {{ login_form|crispy }} <!-- uses form from forms.py -->
+        {{ login_form|crispy }} <!-- load in form -->
         <button class="submit" type="submit">Login</button>
     </form>
     <div>

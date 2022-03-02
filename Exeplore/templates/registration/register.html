@@ -1,22 +1,24 @@
-{% extends 'registration/header.html' %}
-{% load static %}
-{% block content %}
-{% load crispy_forms_tags %}
+{% extends 'registration/header.html' %} <!-- use standard header -->
+{% load static %} <!-- for accessing the settings image -->
+{% block content %} <!-- begin content -->
+{% load crispy_forms_tags %} <!-- use django's form functionality -->
 
 <div class="mobile-container">
-	<!-- navigation -->
+	<!-- navigation bar has only settings -->
     <div class="topnav" id="links">
 		<button class="icon"><a href="/settings"><img src="{% static 'images/settings.png' %}"></a></button>
     </div>
-	<!-- registration form -->
+	<!-- registration form from forms.py -->
 	<h1 class="blue">Register</h1>
 	<form method="POST">
 		{% csrf_token %}
-		{{register_form|crispy }}
+		{{register_form|crispy }} <!-- load in form -->
 		<button class="submit" type="submit">Register</button>
 	</form>
+	<!-- link to login -->
 	<p class="text-center">If you already have an account, <a href="/login">login</a> instead.</p>
 	<script>
+		// this script ensures emails are exeter university ones
 		var email = document.getElementById('id_email');
 		email.pattern = "[a-z0-9._%+-]+@exeter.ac.uk$";
 	</script>
