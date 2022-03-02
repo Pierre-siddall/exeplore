@@ -46,6 +46,13 @@
         </div>
         <div id="recent_vists">
             <h3 class="grey">Places recently visited: </h3>
+            {% if visits %}
+            {% for v in visits %}
+            {{v.location}}<br>
+            {% endfor %}
+            {% else %}
+            No places visited yet!
+            {% endif %}
         </div>
         <button class="logout" type="logout"><a href="/login">Log out</a></p></button>
         <button class="exit" type="exit"><a href="/splash">Exit</a></p></button>
