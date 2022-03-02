@@ -19,7 +19,16 @@
         <p>
             <img src="../../media/{{ b.icon }}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             {{b.badge_name}}
+            {% for eb in earnedBadges %}
+            {% if eb.badge == b.badge_name %}
         </p>
+        {% endfor %}
+        {% else %}
+        <h1>No Data</h1>
+        {% endif %}
+        {% if earnedBadges %}
+        {% for eb in earnedBadges %}
+        {{ eb. }}
         {% endfor %}
         {% else %}
         <h1>No Data</h1>

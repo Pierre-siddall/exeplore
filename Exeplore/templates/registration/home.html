@@ -12,7 +12,13 @@
         --><button class="icon"><a href="/badges"><img src="{% static 'images/badges.png' %}"></a></button>
         </div>
     <div id="location">
-        <h1 class="grey">Welcome!</h1>
+        <h1 class="grey">Welcome
+        {% if user %}
+        {{user.first_name}}!
+        {% else %}
+        No Name
+        {% endif %}
+        </h1>
         <div id="map"></div>
         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCmLbmAbTlKJPB5N5bpwef5tfmn5DG_Y8c&callback=initialiseMap" async></script>
         <script src="{% static 'javascript/map.js' %}"></script>
