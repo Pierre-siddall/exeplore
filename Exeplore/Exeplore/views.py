@@ -61,7 +61,9 @@ def login_view(request):
 
 def home(request):
     """This function renders the home page"""
-    return render(request=request, template_name="registration/home.html")
+    name = request.session.get('username')
+    user = User.objects.get(username=name)
+    return render(request, "registration/home.html", {'user':user})
 
 def splash(request):
     """This function renders the splash page"""
@@ -83,6 +85,9 @@ def locations(request):
 
 def badges(request):
     """This function renders the badges page"""
-    data = Badge.objects.all()
+    badges = Badge.objects.all()
     name = request.session.get('username')
-    return render(request, "registration/badges.html", {'badges': data})
+    user = User.objects.get(username=name)
+    player = Player.objects.get(user=user)
+    earnedBadges = EarnedBadge.objects.filter(player=player)
+    return render(request, "registration/badges.html", {'badges': badges, 'earnedBadges':earnedBadges})

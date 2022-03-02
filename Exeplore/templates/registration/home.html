@@ -1,20 +1,32 @@
-{% extends 'registration/header.html' %}
-{% load static %}
-{% block content %}
+{% extends 'registration/header.html' %} <!-- use standard header -->
+{% load static %} <!-- for accessing navigation bar images -->
+{% block content %} <!-- begin content -->
 
 <!-- mobile-container to look like a phone -->
 <div class="mobile-container" style="background-color: #24436d;">
-    <!-- navigation -->
+    <!-- navigation bar -->
     <div class="topnav" id="links">
+        <!-- link to settings page -->
         <button class="icon"><a href="/settings"><img src="{% static 'images/settings.png' %}"></a></button><!--
+        TODO: open camera
         --><button class="icon"><a><img src="{% static 'images/qr.png' %}"></a></button><!--
+        link to locations page
         --><button class="icon"><a href="/locations"> <img src="{% static 'images/locations.png' %}"></a></button><!--
+        link to badges page
         --><button class="icon"><a href="/badges"><img src="{% static 'images/badges.png' %}"></a></button>
         </div>
     <div id="location">
-        <h1 class="grey">Welcome!</h1>
+        <h1 class="grey">Welcome
+        {% if user %}
+        {{user.first_name}}!
+        {% else %}
+        No Name
+        {% endif %}
+        </h1>
         <div id="map"></div>
+        <!-- script for fetching a mao API from Google -->
         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCmLbmAbTlKJPB5N5bpwef5tfmn5DG_Y8c&callback=initialiseMap" async></script>
+        <!-- script for styling the map -->
         <script src="{% static 'javascript/map.js' %}"></script>
     </div>
 </div>

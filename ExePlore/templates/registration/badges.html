@@ -1,28 +1,39 @@
-{% extends 'registration/header.html' %}
-{% load static %}
-{% block content %}
+{% extends 'registration/header.html' %} <!-- use standard header -->
+{% load static %} <!-- for accessing the header images -->
+{% block content %} <!-- begin content -->
 
 <!-- mobile-container to look like a phone -->
 <div class="mobile-container" style="background-color: #24436d;">
-    <!-- navigation -->
+    <!-- navigation bar -->
     <div class="topnav" id="links">
+        <!-- link to settings page -->
         <button class="icon"><a href="/settings"><img src="{% static 'images/settings.png' %}"></a></button><!--
+        TODO: open camera
         --><button class="icon"><a><img src="{% static 'images/qr.png' %}"></a></button><!--
+        link to locations page
         --><button class="icon"><a href="/locations"> <img src="{% static 'images/locations.png' %}"></a></button><!--
+        link to badges page i.e. this one
         --><button class="icon"><a href="/badges"><img src="{% static 'images/badges.png' %}"></a></button>
 
     </div>
     <div id="badges">
         <h1 class="grey">Badges</h1>
-        {% if badges %}
+        {% if badges %} <!-- checks whether data was actually loaded -->
         {% for b in badges %}
         <p>
+            <!-- badge image, some spacing, then the badge name -->
             <img src="../../media/{{ b.icon }}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             {{b.badge_name}}
+            {% for eb in earnedBadges %}
+            {% if eb.badge == b %}
+            - Collected!
+            {% else %}
+            {% endif %}
+            {% endfor %}
         </p>
         {% endfor %}
         {% else %}
-        <h1>No Data</h1>
+        <h1>No Data</h1> <!-- in case no data was loaded -->
         {% endif %}
     </div>
 </div>

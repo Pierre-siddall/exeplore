@@ -1,6 +1,17 @@
 /* --------- general formatting --------- */
 
-/* for viewing on mobile - all html goes in one big div of this class */
+/* for viewing on mobile - all html goes in a div of this class */
+.mobile-container {
+    max-width: 600px;
+    padding: 12px;
+    margin: auto;
+}
+/*--- standard background for all pages ---*/
+body {
+    background-image: url(../images/stars_bg.png);
+    background-color: black;
+}
+
 .button-container {
     text-align: center;    
 }  
@@ -8,17 +19,12 @@
     background-color: #682776;
     font-size: 25px;
     border: 7px solid #24436d;
-        width: 300px;  
-        height: 200px;  
-        padding-top: 100px;  
-}
-.mobile-container {
-    max-width: 600px;
-    padding: 12px;
-    margin: auto;
+    width: 300px;  
+    height: 200px;  
+    padding-top: 100px;  
 }
 
-/* for looking at it on a laptop */
+/* for viewing on a laptop */
 .container {
     padding: 12px;
     margin: auto;
@@ -35,9 +41,7 @@ p, label, div { /* default text colour */
 /* to set colours */
 .grey {
     color: #dcdada;
-    /*text-shadow: 0.25px 0.25px 4px white;*/
 }
-
 .blue {
     color: #24436d;
 }
@@ -52,16 +56,17 @@ button:hover {
     opacity: 0.5;
 }
 
+/* text inputs */
 input[type=text], input[type=password], input[type=email] {
     width: 100%;
     padding: 12px 16px;
     margin: 6px 0;
     display: inline-block;
-    border: 1px solid #24436d;
+    border: 1px solid #000000;
     box-sizing: border-box;
 }
 
-/* for any button that is okay or submit or done or go */
+/* any button that is okay/submit/done/go */
 button.submit {
     background-color: #682776;
     color: #b8b5b5;
@@ -79,6 +84,7 @@ button.submit {
     height:50px;
 }
 
+/* styling the icon buttons */
 button.icon, a.icon {
     width:25%;
     padding:0%;
@@ -88,6 +94,9 @@ button.icon, a.icon {
     color: white;
 }
 
+/* ----------- formatting badge list ----------- */
+
+/* icons are always this size */
 button.icon img, a.icon img, div#badges p img {
     width:50px;
 }
