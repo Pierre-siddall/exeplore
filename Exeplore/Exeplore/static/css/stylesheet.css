@@ -1,5 +1,11 @@
 /* --------- general formatting --------- */
 
+/*--- standard background for all pages ---*/
+body {
+    background-image: url(../images/stars_bg.png);
+    background-color: black;
+}
+
 /* for viewing on mobile - all html goes in one big div of this class */
 .button-container {
     text-align: center;    
@@ -57,7 +63,7 @@ input[type=text], input[type=password], input[type=email] {
     padding: 12px 16px;
     margin: 6px 0;
     display: inline-block;
-    border: 1px solid #24436d;
+    border: 1px solid #000000;
     box-sizing: border-box;
 }
 
