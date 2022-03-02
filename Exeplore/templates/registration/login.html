@@ -1,10 +1,10 @@
-{% extends 'registration/header.html' %}
-{% load static %}
-{% block content %}
-{% load crispy_forms_tags %}
+{% extends 'registration/header.html' %} <!-- use standard header -->
+{% load static %} <!-- for accessing the settings image -->
+{% block content %} <!-- begin content -->
+{% load crispy_forms_tags %} <!-- use django's form functionality -->
 
 <div class="mobile-container">
-    <!-- navigation -->
+    <!-- navigation bar has only settings -->
     <div class="topnav" id="links">
 		<button class="icon"><a href="/settings"><img src="{% static 'images/settings.png' %}"></a></button>
     </div>
@@ -12,11 +12,13 @@
     <h1 class="blue">Login</h1>
     <form method="POST">
         {% csrf_token %}
-        {{ login_form|crispy }}
+        {{ login_form|crispy }} <!-- uses form from forms.py -->
         <button class="submit" type="submit">Login</button>
     </form>
     <div>
+        <!-- link to registration -->
         <p class="text-center">Don't have an account? <a href="/register">Create an account</a>.</p>
+        <!-- TODO: implement change password -->
         <p class="text-center">Forgot <a href="#">password?</a></p>
     </div>
 </div>
