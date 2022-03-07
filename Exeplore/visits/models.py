@@ -14,6 +14,12 @@ class Location(models.Model):
     def __str__(self):
         return self.location_name
 
+    def get_lat(self):  
+        return self.latitude
+
+    def get_long(self):
+        return self.longitude
+
 class Badge(models.Model):
     """This class represents a Badge, with the four classifications, as well
     as a FileField used for uploading an icon"""
