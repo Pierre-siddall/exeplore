@@ -29,7 +29,12 @@
             {% else %}
             No Name
             {% endif %} </p>
-            <p> Level: 0</p>
+            <p> Level: 
+            {% if user.player %}
+            {{user.player.get_level}}
+            {% else %}
+            0
+            {% endif %}</p>
             
             <p> Points:
             {% if user.player %}
