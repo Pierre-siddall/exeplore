@@ -3,12 +3,15 @@ login, and rendering of other pages"""
 from django.contrib.auth.forms import AuthenticationForm
 from django.shortcuts import render,redirect
 from django.contrib import messages
-from django.contrib.auth import login, authenticate
+from django.contrib.auth import login, authenticate, get_user_model
 from django.contrib.auth.models import Group
+from users.models import Player, EarnedBadge, Visit
 
 from visits.models import Badge, Location
 
 from .forms import SignUpForm, PlayerForm
+User = get_user_model()
+
 def register(request):
     """This method registers a user by using the SignUpForm, and associates a
     Player with them"""
@@ -47,6 +50,8 @@ def login_view(request):
             if user is not None:
                 login(request, user)
                 messages.info(request, "logged in as", username, ".")
+                request.session['username'] = username
+
                 return redirect('/home/')
             else:
                 messages.error(request,"Invalid username and/or password")
@@ -59,7 +64,8 @@ def login_view(request):
 
 def home(request):
     """This function renders the home page - this also writes locations to a file"""
-    
+    name = request.session.get('username')
+    user = User.objects.get(username=name)
     data = Location.objects.all()
     new_file = open("locations.txt", "w")
     
@@ -78,7 +84,7 @@ def home(request):
             f.write(d)
     """
 
-    return render(request=request, template_name="registration/home.html")
+    return render(request, "registration/home.html", {'user':user})
 
 def splash(request):
     """This function renders the splash page"""
@@ -86,14 +92,26 @@ def splash(request):
 
 def settings(request):
     """This function renders the settings page"""
-    return render(request=request, template_name="registration/settings.html")
-
+    name = request.session.get('username')
+    user = User.objects.get(username=name)
+    player = Player.objects.get(user=user)
+    earnedBadges = EarnedBadge.objects.filter(player=player)
+    visits = Visit.objects.filter(player=player)
+    return render(request, "registration/settings.html", 
+    {'user':user, 'earnedBadges':earnedBadges, 'visits':visits})
 def locations(request):
     """This function renders the locations page"""
     data = Location.objects.all()
-    return render(request, "registration/locations.html", {'locations': data})
-
+    name = request.session.get('username')
+    user = User.objects.get(username=name)
+    player = Player.objects.get(user=user)
+    visits = Visit.objects.filter(player=player)
+    return render(request, "registration/locations.html", {'locations': data, 'visits':visits})
 def badges(request):
     """This function renders the badges page"""
     data = Badge.objects.all()
-    return render(request, "registration/badges.html", {'badges': data})
+    name = request.session.get('username')
+    user = User.objects.get(username=name)
+    player = Player.objects.get(user=user)
+    earned_badges = EarnedBadge.objects.filter(player=player)
+    return render(request, "registration/badges.html", {'badges': data, 'earnedBadges':earned_badges})
