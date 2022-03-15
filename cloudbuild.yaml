@@ -7,24 +7,25 @@ steps:
 - name: 'gcr.io/cloud-builders/docker'
   args: ['push', 'gcr.io/${PROJECT_ID}/exeplore']
 
-"""# Deploy image to Cloud Run
-- name: 'gcr.io/cloud-builders/gcloud'
-  args:
-  - 'run'
-  - 'deploy'
-  - 'exeplore'
-  - '--image'
-  - 'gcr.io/${PROJECT_ID}/exeplore'
-  - '--region'
-  - 'europe-west2'
-  - '--platform'
-  - 'managed'
+#"""# Deploy image to Cloud Run
+#- name: 'gcr.io/cloud-builders/gcloud'
+ # args:
+  #- 'run'
+ # - 'deploy'
+  #- 'exeplore'
+  #- '--image'
+  #- 'gcr.io/${PROJECT_ID}/exeplore'
+  #- '--region'
+  #- 'europe-west2'
+  #- '--platform'
+  #- 'managed'
 # Deploy container image to Cloud Run
-- name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
-  entrypoint: gcloud
-  args: ['run', 'deploy', 'exeplore', '--image', 'gcr.io/${PROJECT_ID}/exeplore', '--region', 'europe-west2', '--platform', 'managed']
-images:
-- gcr.io/${PROJECT_ID}/exeplore"""
+#- name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+ # entrypoint: gcloud
+  #args: ['run', 'deploy', 'exeplore', '--image', 'gcr.io/${PROJECT_ID}/exeplore', '--region', 'europe-west2', '--platform', 'managed']
+#images:
+#- gcr.io/${PROJECT_ID}/exeplore"""
+
 - name: "gcr.io/cloud-builders/gcloud"
     args:
       [
