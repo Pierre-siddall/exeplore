@@ -63,6 +63,8 @@ def login_view(request):
 
 def logout_view(request):
     logout(request)
+    # if some cookies need to be saved even after logout
+    # save them here
     return redirect('/splash/')
 
 def home(request):
