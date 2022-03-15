@@ -13,7 +13,7 @@ steps:
   - 'deploy'
   - 'exeplore'
   - '--image'
-  - 'gcr.io/${PROJECT_ID}/exeplore:$COMMIT_SHA'
+  - 'gcr.io/${PROJECT_ID}/exeplore:$SHORT_SHA'
   - '--region'
   - 'europe-west2'
   - '--platform'
