@@ -9,7 +9,7 @@ steps:
 
 #"""# Deploy image to Cloud Run
 - name: 'gcr.io/cloud-builders/gcloud'
- args:
+  args:
   - 'run'
   - 'deploy'
   - 'exeplore'
