@@ -3,7 +3,7 @@ login, and rendering of other pages"""
 from django.contrib.auth.forms import AuthenticationForm
 from django.shortcuts import render,redirect
 from django.contrib import messages
-from django.contrib.auth import login, authenticate, get_user_model
+from django.contrib.auth import login, authenticate, get_user_model, logout
 from django.contrib.auth.models import Group
 from users.models import Player, EarnedBadge, Visit
 
@@ -61,6 +61,11 @@ def login_view(request):
     return render(request=request, template_name="registration/login.html",
     context={"login_form": auth_form})
 
+def logout_view(request):
+    logout(request)
+    # if some cookies need to be saved even after logout
+    # save them here
+    return redirect('/splash/')
 
 def home(request):
     """This function renders the home page - this also writes locations to a file"""
@@ -92,12 +97,15 @@ def splash(request):
 
 def settings(request):
     """This function renders the settings page"""
-    name = request.session.get('username')
-    user = User.objects.get(username=name)
-    player = Player.objects.get(user=user)
-    earnedBadges = EarnedBadge.objects.filter(player=player)
-    visits = Visit.objects.filter(player=player)
-    return render(request, "registration/settings.html", {'user':user, 'earnedBadges':earnedBadges, 'visits':visits})
+    try:
+        name = request.session.get('username')
+        user = User.objects.get(username=name)
+        player = Player.objects.get(user=user)
+        earnedBadges = EarnedBadge.objects.filter(player=player)
+        visits = Visit.objects.filter(player=player)
+        return render(request, "registration/settings.html", {'user':user, 'earnedBadges':earnedBadges, 'visits':visits})
+    except:
+        return render(request, "registration/splash.html")
 
 def locations(request):
     """This function renders the locations page"""
