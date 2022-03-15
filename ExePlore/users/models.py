@@ -11,10 +11,10 @@ User = get_user_model()
 
 class Player(models.Model):
     """This class represents the Player model within the app"""
-    user = models.OneToOneField(User,on_delete = models.CASCADE, verbose_name = "Player")
+    user = models.OneToOneField(User, on_delete = models.CASCADE, verbose_name = "Player")
     badges = models.ManyToManyField(Badge, verbose_name = "Badges",through='EarnedBadge')
     visits = models.ManyToManyField(Location, verbose_name = "Visits", through='Visit')
-    score = models.IntegerField("Score", default= 0)
+    score = models.IntegerField("Score", default = 0)
     def get_level(self):
         return int(self.score/10)
     def __str__(self):

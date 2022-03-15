@@ -22,11 +22,12 @@ def register(request):
         if form.is_valid():
             #if there's some error with creating the Player to go with the User
             if player_form.is_valid():
-                user =form.save()
+                user = form.save()
                 #add the new user to the admin group Player
-                group  = Group.objects.get(name = 'Player')
+                group = Group.objects.get(name = 'Player')
                 user.groups.add(group)
                 messages.success(request, "Registration successful.")
+                request.session['username'] = username
                 return redirect('/home/') # redirects to the home page
             else:
                 messages.error(request, player_form.errors)
@@ -51,7 +52,6 @@ def login_view(request):
                 login(request, user)
                 messages.info(request, "logged in as", username, ".")
                 request.session['username'] = username
-
                 return redirect('/home/')
             else:
                 messages.error(request,"Invalid username and/or password")
@@ -97,8 +97,8 @@ def settings(request):
     player = Player.objects.get(user=user)
     earnedBadges = EarnedBadge.objects.filter(player=player)
     visits = Visit.objects.filter(player=player)
-    return render(request, "registration/settings.html", 
-    {'user':user, 'earnedBadges':earnedBadges, 'visits':visits})
+    return render(request, "registration/settings.html", {'user':user, 'earnedBadges':earnedBadges, 'visits':visits})
+
 def locations(request):
     """This function renders the locations page"""
     data = Location.objects.all()
@@ -107,6 +107,7 @@ def locations(request):
     player = Player.objects.get(user=user)
     visits = Visit.objects.filter(player=player)
     return render(request, "registration/locations.html", {'locations': data, 'visits':visits})
+    
 def badges(request):
     """This function renders the badges page"""
     data = Badge.objects.all()
