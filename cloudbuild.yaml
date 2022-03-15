@@ -24,4 +24,4 @@ steps:
   entrypoint: gcloud
   args: ['run', 'deploy', 'exeplore', '--image', 'gcr.io/${PROJECT_ID}/exeplore', '--region', 'europe-west2', '--platform', 'managed']
 images:
-- gcr.io/${PROJECT_ID}/exeplore"""
+- gcr.io/${PROJECT_ID}/exeplore
