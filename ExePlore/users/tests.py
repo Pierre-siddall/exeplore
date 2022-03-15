@@ -60,3 +60,11 @@ class ClientTestCase(TestCase):
         user = User.objects.get(username='username')
         self.assertEqual(user.username, 'username')
         self.assertRedirects(response, '/home/', status_code=302, target_status_code=200, msg_prefix='', fetch_redirect_response=True)
+
+    def test_user_logout(self):
+        # test logging out, including cookie is deleted
+        response = self.c.get('/logout/')
+        self.assertRedirects(response, '/splash/', status_code=302, target_status_code=200, msg_prefix='', fetch_redirect_response=True)
+        self.session = self.c.session
+        with self.assertRaises(KeyError):
+            username = self.session['username']
