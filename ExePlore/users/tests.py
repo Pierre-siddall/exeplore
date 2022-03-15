@@ -21,8 +21,8 @@ class ClientTestCase(TestCase):
 
     def test_user_login(self):
         # test the user can be logged in
-        response = self.c.login(username='edwinhubble', password='HubbleSpace1990')
-        self.assertEqual(response, True)
+        response = self.c.post('/login/', {'username':'edwinhubble', 'password':'HubbleSpace1990'})
+        self.assertRedirects(response, '/home/', status_code=302, target_status_code=200, msg_prefix='', fetch_redirect_response=True)
 
     def test_home_page(self):
         # test the home page renders correctly
@@ -31,6 +31,7 @@ class ClientTestCase(TestCase):
         passed_name = response.context['user'].first_name
         self.assertEqual(response.status_code, 200)
         self.assertEqual(name, passed_name)
+        self.assertTemplateUsed(response, template_name='registration/home.html')
 
     def test_settings_page(self):
         # TODO: set a score (when this is implemented)
@@ -39,16 +40,23 @@ class ClientTestCase(TestCase):
         passed_level = Player.objects.get(user = response.context['user']).get_level()
         self.assertEqual(response.status_code, 200)
         self.assertEqual(level, passed_level)
+        self.assertTemplateUsed(response, template_name='registration/settings.html')
         # TODO: check badges earned (when adding them is implemented)
         # TODO: check visits (when adding them is implemented)
 
     def test_badges_page(self):
         # TODO: check badges earned (when adding them is implemented)
-        # TODO: check list of badges
+        self.assertEqual(True, True)
+        # self.assertTemplateUsed(response, template_name='registration/badges.html')
 
     def test_visits_page(self):
         # TODO: check visits (when adding them is implemented)
-        # TODO: check list of locations
+        self.assertEqual(True, True)
+        # self.assertTemplateUsed(response, template_name='registration/locations.html')
 
     def test_regisration(self):
-        # TODO: creation of user using registration
+        # test creation of user using registration
+        response = self.c.post('/register/', {'username':'username', 'email':'email@example.com', 'first_name':'first_name', 'last_name':'last_name', 'password1':'complex123', 'password2':'complex123'})
+        user = User.objects.get(username='username')
+        self.assertEqual(user.username, 'username')
+        self.assertRedirects(response, '/home/', status_code=302, target_status_code=200, msg_prefix='', fetch_redirect_response=True)

@@ -27,7 +27,7 @@ def register(request):
                 group = Group.objects.get(name = 'Player')
                 user.groups.add(group)
                 messages.success(request, "Registration successful.")
-                request.session['username'] = username
+                request.session['username'] = user.username
                 return redirect('/home/') # redirects to the home page
             else:
                 messages.error(request, player_form.errors)
@@ -107,7 +107,7 @@ def locations(request):
     player = Player.objects.get(user=user)
     visits = Visit.objects.filter(player=player)
     return render(request, "registration/locations.html", {'locations': data, 'visits':visits})
-    
+
 def badges(request):
     """This function renders the badges page"""
     data = Badge.objects.all()
