@@ -1,0 +1,4 @@
+Test logs for elements that cannot use automated testing
+
+Test            Expected Outcome        Actual Outcome          Date
+Example         200 status code         200 status code         17/03
