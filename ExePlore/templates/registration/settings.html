@@ -3,7 +3,7 @@
 {% block content %} <!-- begin content -->
 
 <!-- mobile-container to look like a phone -->
-<div class="mobile-container" style="background-color: #24436d;">
+<div class="mobile-container">
     <!-- navigation bar -->
     <div class="topnav" id="links">
         <!-- link to settings page i.e. this one -->
@@ -18,54 +18,62 @@
     <div id="location">
         <h1 class="grey">Settings</h1>
     </div>
-    <!-- links to login and register pages -->
-    <!-- TODO: trigger the user being logged out -->
+    <!-- display the user's information -->
     <div class="main">
         <div id="user_info">
-            <h3 class="grey">User Information: </h3>
-            <p> User Name: 
+            <h3 class="grey">User Information </h3>
+            <p> Name: 
             {% if user %}
             {{user.first_name}}
+            <!-- link to a page where the user chan change their information -->
+            <button class="small" type="change"><a href="/change">Change</a></button>
             {% else %}
             No Name
-            {% endif %} </p>
+            {% endif %}</p>
             <p> Level: 
             {% if user.player %}
             {{user.player.get_level}}
             {% else %}
             0
             {% endif %}</p>
-            
             <p> Points:
             {% if user.player %}
             {{user.player.score}}
             {% else %}
             0
             {% endif %}  </p>
-            <button class="change" type="change"><a href="/change">Change User Information</a></p></button>
         </div>
+        <br>
+        <!-- display the badges they've earned, in a list with icons -->
         <div id="badges_earned">
-            <h3 class="grey">Badges earned: </h3>
+            <h3 class="grey">Badges earned </h3>
             {% if earnedBadges %}
             {% for eb in earnedBadges %}
+            <img src="../../media/{{ eb.badge.icon }}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             {{eb.badge}}<br>
             {% endfor %}
             {% else %}
             No badges earned yet!
             {% endif %}
         </div>
+        <br>
+        <!-- display the places they've visited, in a list with icons -->
         <div id="recent_vists">
-            <h3 class="grey">Places recently visited: </h3>
+            <h3 class="grey">Places recently visited </h3>
             {% if visits %}
             {% for v in visits %}
+            <img src="../../media/{{ v.location.icon }}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             {{v.location}}<br>
             {% endfor %}
             {% else %}
             No places visited yet!
             {% endif %}
         </div>
-        <button class="logout" type="logout"><a href="/logout">Log out</a></p></button>
-        <button class="exit" type="exit"><a href="/splash">Exit</a></p></button>
+        <br>
+        <!-- triggers the user logging out -->
+        <button class="submit" type="logout"><a href="/logout">Log out</a></button>
+        <!-- returns the user to the splash screen without logging them out -->
+        <button class="submit" type="exit"><a href="/splash">Exit</a></button>
     </div>
 </div>
     
