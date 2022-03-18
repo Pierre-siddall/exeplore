@@ -18,23 +18,29 @@
     </div>
     <div id="badges">
         <h1 class="grey">Badges</h1>
-        {% if badges %} <!-- checks whether data was actually loaded -->
-        {% for b in badges %}
         <p>
-            <!-- badge image, some spacing, then the badge name -->
-            <img src="../../media/{{ b.icon }}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            {{b.badge_name}}
-            {% for eb in earnedBadges %}
-            {% if eb.badge == b %}
-            - Collected!
-            <style>
-                eb.badge, div#badges p img {
-                    opacity: 1;
-                }
-            </style>
-            {% else %}
-            {% endif %}
-            {% endfor %}
+        {% if earnedBadges %}
+        {% for eb in earnedBadges %}
+        <img src="../../media/{{ eb.badge.icon }}"style="opacity:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        {{eb.badge.badge_name}}
+        {% endfor %}
+        {% else %}
+        {% endif %}
+
+
+        {% if badges %}
+        {% for b in badges %}
+        <img src="../../media/{{ b.icon }}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        {{b.badge_name}}
+        {% endfor %}
+        {% else %}
+        {% endif %}
+
+
+        {% if badges %} <!-- checks whether data was actually loaded -->
+
+        {% for b in badges %}
+                    
         </p>
         {% endfor %}
         {% else %}

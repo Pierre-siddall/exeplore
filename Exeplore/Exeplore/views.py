@@ -114,4 +114,7 @@ def badges(request):
     user = User.objects.get(username=name)
     player = Player.objects.get(user=user)
     earned_badges = EarnedBadge.objects.filter(player=player)
+    for item in data:
+        if item in earned_badges:
+            data.remove(item)
     return render(request, "registration/badges.html", {'badges': data, 'earnedBadges':earned_badges})
