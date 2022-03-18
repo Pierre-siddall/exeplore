@@ -21,8 +21,8 @@
         {% if earnedBadges %}
         {% for eb in earnedBadges %}
         <p>
-        <img src="../../media/{{ eb.badge.icon }}"style="opacity:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        {{eb.badge.badge_name}}
+        <img src="../../media/{{ eb.icon }}"style="opacity:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        {{eb.badge_name}}
         </p>
         {% endfor %}
         {% else %}
