@@ -60,9 +60,10 @@ def login_view(request):
                 return redirect('/home/')
             else:
                 messages.error(request,"Invalid username and/or password")
-                logger.info("The user attempted to login with the username:",username," and the password:",password)
+                logger.info("The user attempted to login with an invalid username and/or password")
         else:
             messages.error(request,"Invalid username and/or password")
+            logger.info("The user attempted to login with an invalid username and/or password")
     auth_form = AuthenticationForm()
     return render(request=request, template_name="registration/login.html",
     context={"login_form": auth_form})

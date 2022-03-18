@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-c_!f^bto48cmyc*7bw2&j)d&31i&q%ksedi=c%(886@whxmgg#
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['0.0.0.0', 'exeplore-meq54jamsa-nw.a.run.app','127.0.0.1', 'localhost']
+ALLOWED_HOSTS = ['0.0.0.0', 'exeplore-meq54jamsa-nw.a.run.app', '127.0.0.1', 'localhost']
 
 # Application definition
 
@@ -123,7 +123,7 @@ STATICFILES_FINDERS = [
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
 ]
-#Media stuff for images in the DB
+# Media stuff for images in the DB
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 MEDIA_URL = 'media/'
 
@@ -133,20 +133,20 @@ MEDIA_URL = 'media/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 LOGGING = {
-    'version':1,
-    'disable_existing_loggers':False,
-    'handlers':{
-        'file':{
-            'level':'INFO',
-            'class':'logging.FileHandler',
-            'filename':'/Exeplore/Exeplore/info.log',
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'file': {
+            'class': 'logging.FileHandler',
+            'filename': 'general.log',
+            'level': 'INFO',
+
         },
     },
-    'loggers':{
-        'django':{
-            'handlers':['file'],
-            'level':'INFO',
-            'propagate':True,
+    'loggers': {
+        '': {
+            'level': 'INFO',
+            'handlers': ['file'],
         },
     },
 }

@@ -93,7 +93,6 @@ function initialiseMap(){
     currentLocation.textContent="Get current location";
     currentLocation.classList.add("custom-map-control-button");
     map.controls[google.maps.ControlPosition.BOTTOM_CENTER].push(currentLocation);
-
     // Anon function that finds the location
     currentLocation.addEventListener("click",() =>{
         if(navigator.geolocation){
