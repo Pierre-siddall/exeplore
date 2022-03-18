@@ -119,6 +119,10 @@ a.icon img, div#badges p img {
     width:50px;
 }
 
+button.icon a img {
+    width : 50px;
+}
+
 /* the images in the badge and locations lists */
 div#badges p img, div#location p img {
     width:100px;
@@ -141,7 +145,7 @@ div#badges p, div#location p, div#user_info p {
 
 div#badges p.incomplete {
     font-size: large;
-    text-indent: 2em;
+    text-indent: 1em;
     color: #dcdada81;
 }
 
