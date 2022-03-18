@@ -27,6 +27,11 @@
             {% for eb in earnedBadges %}
             {% if eb.badge == b %}
             - Collected!
+            <style>
+                eb.badge, div#badges p img {
+                    opacity: 1;
+                }
+            </style>
             {% else %}
             {% endif %}
             {% endfor %}

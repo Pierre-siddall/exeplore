@@ -97,9 +97,11 @@ button.icon, a.icon {
 /* ----------- formatting badge list ----------- */
 
 /* icons are always this size */
-button.icon img, a.icon img, div#badges p img {
+a.icon img, div#badges p img {
+    opacity: 0.3;
     width:50px;
 }
+
 
 div#badges p {
     font-size: large;
