@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/4.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.0/ref/settings/
 """
-
+import logging
 from pathlib import Path
 import os
 
@@ -131,3 +131,22 @@ MEDIA_URL = 'media/'
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+LOGGING = {
+    'version':1,
+    'disable_existing_loggers':False,
+    'handlers':{
+        'file':{
+            'level':'INFO',
+            'class':'logging.FileHandler',
+            'filename':'/Exeplore/Exeplore/info.log',
+        },
+    },
+    'loggers':{
+        'django':{
+            'handlers':['file'],
+            'level':'INFO',
+            'propagate':True,
+        },
+    },
+}
