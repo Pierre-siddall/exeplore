@@ -127,7 +127,6 @@ def badges(request):
     all_badges = []
     for b in earned_badges:
         all_badges.append(b.badge)
-    print(all_badges)
     for item in data:
         if item in all_badges:
             data.remove(item)
