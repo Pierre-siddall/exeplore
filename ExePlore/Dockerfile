@@ -5,10 +5,8 @@ ENV PORT 8080
 ENV HOST 0.0.0.0
 RUN mkdir /Exeplore
 WORKDIR /Exeplore
-COPY requirements.txt /Exeplore
+COPY requirements.txt /Exeplore/
 RUN pip install -r requirements.txt
-COPY . /Exeplore
-
-RUN pwd && ls -lah .
-RUN python manage.py runserver 0.0.0.0:8080
-ENTRYPOINT python manage.py runserver 0.0.0.0:8080
+COPY . /Explore/
+ENTRYPOINT [ "python" "manage.py"]
+CMD [ "runserver", "0.0.0.0:8080" ]
