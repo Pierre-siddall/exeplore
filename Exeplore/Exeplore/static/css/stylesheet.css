@@ -102,7 +102,6 @@ a.icon img, div#badges p img {
     width:50px;
 }
 
-
 div#badges p {
     font-size: large;
     text-indent: 2em;
@@ -117,4 +116,10 @@ div#location p {
     font-size: large;
     text-indent: 2m;
     color: #dcdada;
+}
+
+div#badges p.incomplete {
+    font-size: large;
+    text-indent: 2em;
+    color: #dcdada81;
 }
