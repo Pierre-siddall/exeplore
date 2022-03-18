@@ -5,6 +5,7 @@
     max-width: 600px;
     padding: 12px;
     margin: auto;
+    background-color: #24436d;
 }
 /*--- standard background for all pages ---*/
 body {
@@ -76,6 +77,22 @@ button.submit {
     width: 100%;
 }
 
+/* make the text colour uniform even when its a link */
+button.submit a, button.small a {
+    color: #b8b5b5;
+}
+
+/* for the small change name button */
+button.small {
+    float: right;
+    background-color: #682776;
+    color: #b8b5b5;
+    padding: 3px 4px;
+    margin: 0%;
+    border: 0ch;
+    width: 20%;
+}
+
 /* --------- formatting the menu bar --------- */
 
 .topnav {
@@ -94,7 +111,7 @@ button.icon, a.icon {
     color: white;
 }
 
-/* ----------- formatting badge list ----------- */
+/* ----------- formatting anything with icons ----------- */
 
 /* icons are always this size */
 a.icon img, div#badges p img {
@@ -102,19 +119,23 @@ a.icon img, div#badges p img {
     width:50px;
 }
 
-div#badges p {
-    font-size: large;
-    text-indent: 2em;
-    color: #dcdada;
+/* the images in the badge and locations lists */
+div#badges p img, div#location p img {
+    width:100px;
+    padding-right: 20px;
+    padding-left: 20px;
 }
 
-button.icon img, i.icon img, div#location p img {
-    width:50px;
+/* as above but for the settings page */
+div#recent_vists img, div#badges_earned img {
+    width:80px;
+    padding: 10px;
 }
 
-div#location p {
+/* the text with these lists */
+div#badges p, div#location p, div#user_info p {
     font-size: large;
-    text-indent: 2m;
+    text-indent: 1em;
     color: #dcdada;
 }
 
@@ -122,4 +143,9 @@ div#badges p.incomplete {
     font-size: large;
     text-indent: 2em;
     color: #dcdada81;
+}
+
+/* settings page headers */
+div#recent_vists h3, div#badges_earned h3, div#user_info h3 {
+    text-align: center;
 }
