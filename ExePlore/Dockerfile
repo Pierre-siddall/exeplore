@@ -8,5 +8,6 @@ WORKDIR /Exeplore
 COPY requirements.txt /Exeplore/
 RUN pip install -r requirements.txt
 COPY . /Exeplore/
-WORKDIR ..
+RUN ls
+WORKDIR /Exeplore/Exeplore
 ENTRYPOINT python manage.py runserver 0.0.0.0:8080
