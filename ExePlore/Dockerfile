@@ -8,7 +8,7 @@ WORKDIR /Exeplore
 COPY requirements.txt /Exeplore/
 RUN pip install -r requirements.txt
 RUN ls
-COPY . /Explore/
+COPY . /Exeplore/
 RUN ls
 COPY manage.py /Exeplore/
 ENTRYPOINT [ "python" "manage.py"]
