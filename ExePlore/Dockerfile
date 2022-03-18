@@ -7,8 +7,9 @@ RUN mkdir /Exeplore
 WORKDIR /Exeplore
 COPY requirements.txt /Exeplore/
 RUN pip install -r requirements.txt
-COPY . /Explore/
-COPY manage.py /Exeplore/
 RUN ls
+COPY . /Explore/
+RUN ls
+COPY manage.py /Exeplore/
 ENTRYPOINT [ "python" "manage.py"]
 CMD [ "runserver", "0.0.0.0:8080" ]
