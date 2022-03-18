@@ -1,5 +1,6 @@
 """This file houses the views for the app, including the User registration,
 login, and rendering of other pages"""
+import logging
 from django.contrib.auth.forms import AuthenticationForm
 from django.shortcuts import render,redirect
 from django.contrib import messages
@@ -10,7 +11,9 @@ from users.models import Player, EarnedBadge, Visit
 from visits.models import Badge, Location
 
 from .forms import SignUpForm, PlayerForm
+
 User = get_user_model()
+logger=logging.getLogger(__name__)
 
 def register(request):
     """This method registers a user by using the SignUpForm, and associates a
@@ -32,6 +35,7 @@ def register(request):
             else:
                 messages.error(request, player_form.errors)
                 messages.error(request, "invalid - user")
+                logger.info("The user attempted to register an invalid account please check the credentials entered")
         else:
             messages.error(request, form.errors)
             messages.error(request, "Invalid form input - original")
@@ -52,9 +56,11 @@ def login_view(request):
                 login(request, user)
                 messages.info(request, "logged in as", username, ".")
                 request.session['username'] = username
+                logger.info("The user logged in with the username:",username," and the password:",password)
                 return redirect('/home/')
             else:
                 messages.error(request,"Invalid username and/or password")
+                logger.info("The user attempted to login with the username:",username," and the password:",password)
         else:
             messages.error(request,"Invalid username and/or password")
     auth_form = AuthenticationForm()
