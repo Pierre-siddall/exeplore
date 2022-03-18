@@ -9,7 +9,7 @@ COPY requirements.txt /Exeplore/
 RUN pip install -r requirements.txt
 RUN ls
 COPY . /Exeplore/
-RUN ls
+RUN ls -lR |more
 COPY manage.py /Exeplore/
 ENTRYPOINT [ "python" "manage.py"]
 CMD [ "runserver", "0.0.0.0:8080" ]
