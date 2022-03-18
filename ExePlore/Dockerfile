@@ -10,4 +10,5 @@ RUN pip install -r requirements.txt
 COPY . /Exeplore
 
 RUN pwd && ls -lah .
+RUN python manage.py runserver 0.0.0.0:8080
 ENTRYPOINT python manage.py runserver 0.0.0.0:8080
