@@ -119,8 +119,15 @@ def locations(request):
 def badges(request):
     """This function renders the badges page"""
     data = Badge.objects.all()
+    data = list(data)
     name = request.session.get('username')
     user = User.objects.get(username=name)
     player = Player.objects.get(user=user)
     earned_badges = EarnedBadge.objects.filter(player=player)
-    return render(request, "registration/badges.html", {'badges': data, 'earnedBadges':earned_badges})
+    all_badges = []
+    for b in earned_badges:
+        all_badges.append(b.badge)
+    for item in data:
+        if item in all_badges:
+            data.remove(item)
+    return render(request, "registration/badges.html", {'badges': data, 'earnedBadges':all_badges})

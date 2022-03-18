@@ -114,8 +114,14 @@ button.icon, a.icon {
 /* ----------- formatting anything with icons ----------- */
 
 /* icons are always this size */
-button.icon img, a.icon img {
+a.icon img, div#badges p img {
+    opacity: 0.3;
     width:50px;
+}
+
+/* sizing the navigation bar icons */
+button.icon a img {
+    width : 50px;
 }
 
 /* the images in the badge and locations lists */
@@ -136,6 +142,12 @@ div#badges p, div#location p, div#user_info p {
     font-size: large;
     text-indent: 1em;
     color: #dcdada;
+}
+
+div#badges p.incomplete {
+    font-size: large;
+    text-indent: 1em;
+    color: #dcdada81;
 }
 
 /* settings page headers */
