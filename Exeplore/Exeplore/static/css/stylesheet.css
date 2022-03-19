@@ -113,12 +113,17 @@ button.icon, a.icon {
 
 /* ----------- formatting anything with icons ----------- */
 
-/* icons are always this size */
+/* icons always start with this opacity */
 a.icon img, div#badges p img {
     opacity: 0.3;
     width:50px;
 }
 
+/* icons always start with this opacity  */
+a.icon img, div#location p img {
+    opacity: 0.3;
+    width:50px;
+}
 /* sizing the navigation bar icons */
 button.icon a img {
     width : 50px;
@@ -149,6 +154,13 @@ div#badges p.incomplete {
     text-indent: 1em;
     color: #dcdada81;
 }
+
+div#location p.incomplete {
+    font-size: large;
+    text-indent: 1em;
+    color: #dcdada81;
+}
+
 
 /* settings page headers */
 div#recent_vists h3, div#badges_earned h3, div#user_info h3 {
