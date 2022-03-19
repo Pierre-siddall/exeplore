@@ -102,9 +102,10 @@ def settings(request):
         name = request.session.get('username')
         user = User.objects.get(username=name)
         player = Player.objects.get(user=user)
+        permission = user.groups.filter(name='Gamekeeper').exists()
         earnedBadges = EarnedBadge.objects.filter(player=player)
         visits = Visit.objects.filter(player=player)
-        return render(request, "registration/settings.html", {'user':user, 'earnedBadges':earnedBadges, 'visits':visits})
+        return render(request, "registration/settings.html", {'user':user, 'earnedBadges':earnedBadges, 'visits':visits, 'permission':permission})
     except:
         return render(request, "registration/splash.html")
 

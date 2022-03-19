@@ -61,7 +61,7 @@
         <div id="recent_vists">
             <h3 class="grey">Places recently visited </h3>
             <!-- check the user has permissions to edit locations -->
-            {% if user.is_superuser %}
+            {% if permission %}
             <button class="small" type="add_location"><a href="/add_location">New Location</a></button>
             <button class="small" type="del_location"><a href="/del_location">Delete Location</a></button>
             {% else %}
