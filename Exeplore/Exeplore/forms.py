@@ -3,6 +3,7 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import get_user_model
 from users.models import Player
+from visits.models import Location
 User = get_user_model()
 
 class SignUpForm(UserCreationForm):
@@ -11,7 +12,7 @@ class SignUpForm(UserCreationForm):
     first_name = forms.CharField(max_length=30, required=False, help_text='Optional.')
     last_name = forms.CharField(max_length=30, required=False, help_text='Optional.')
     email = forms.EmailField(max_length=254,
-    help_text='Required. Inform a valid UoE email address.')
+    help_text='Required. Input a valid UoE email address.')
     class Meta:
         model = User
         fields = ('username', 'first_name', 'last_name', 'email', 'password1', 'password2', )
@@ -24,3 +25,9 @@ class PlayerForm(forms.ModelForm):
         #Doesn't use explicit fields as there's no fields for the player form to have that
         #the sign up form doesn't have, and that can be changed upon registration
         exclude = ('score', 'user', 'badges', 'visits' )
+
+class AddLocationForm(forms.ModelForm):
+    class Meta:
+        model = Location
+        fields = ('location_name', 'latitude', 'longitude', 'point_value', 'icon')
+

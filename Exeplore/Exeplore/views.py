@@ -6,10 +6,11 @@ from django.contrib import messages
 from django.contrib.auth import login, authenticate, get_user_model, logout
 from django.contrib.auth.models import Group
 from users.models import Player, EarnedBadge, Visit
+from visits.models import Location
 
 from visits.models import Badge, Location
 
-from .forms import SignUpForm, PlayerForm
+from .forms import SignUpForm, PlayerForm, AddLocationForm
 User = get_user_model()
 
 def register(request):
@@ -101,9 +102,10 @@ def settings(request):
         name = request.session.get('username')
         user = User.objects.get(username=name)
         player = Player.objects.get(user=user)
+        permission = user.groups.filter(name='Gamekeeper').exists()
         earnedBadges = EarnedBadge.objects.filter(player=player)
         visits = Visit.objects.filter(player=player)
-        return render(request, "registration/settings.html", {'user':user, 'earnedBadges':earnedBadges, 'visits':visits})
+        return render(request, "registration/settings.html", {'user':user, 'earnedBadges':earnedBadges, 'visits':visits, 'permission':permission})
     except:
         return render(request, "registration/splash.html")
 
@@ -138,3 +140,27 @@ def badges(request):
         if item in all_badges:
             data.remove(item)
     return render(request, "registration/badges.html", {'badges': data, 'earnedBadges':all_badges})
+
+def add_location(request):
+    if request.method == "POST":
+        form = AddLocationForm(request.POST, request.FILES)
+        #if the error is with the user's entries
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Location adding successful.")
+            return redirect('/settings/') # redirects to the settings page
+        else:
+            messages.error(request, form.errors)
+            messages.error(request, "invalid - location")
+    form = AddLocationForm()
+    return render(request=request, template_name="registration/add_location.html",
+    context={"location_form": form})
+
+def del_location(request):
+    if request.method == "POST":
+        Location.objects.filter(id=request.POST["location"]).delete()
+        messages.success(request, "Location deleting successful.")
+        return redirect('/settings/') # redirects to the settings page
+    data = Location.objects.all()
+    return render(request=request, template_name="registration/del_location.html",
+    context={"locations": data})

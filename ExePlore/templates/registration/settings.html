@@ -60,6 +60,13 @@
         <!-- display the places they've visited, in a list with icons -->
         <div id="recent_vists">
             <h3 class="grey">Places recently visited </h3>
+            <!-- check the user has permissions to edit locations -->
+            {% if permission %}
+            <button class="small" type="add_location"><a href="/add_location">New Location</a></button>
+            <button class="small" type="del_location"><a href="/del_location">Delete Location</a></button>
+            {% else %}
+            {% endif %}
+            <!-- display their visits -->
             {% if visits %}
             {% for v in visits %}
             <img src="../../media/{{ v.location.icon }}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
