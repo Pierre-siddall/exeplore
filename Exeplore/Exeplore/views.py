@@ -105,8 +105,9 @@ def settings(request):
         permission = user.groups.filter(name='Gamekeeper').exists()
         developer = False
         if (not permission):
-            permission = True
             developer = user.groups.filter(name='Developer').exists()
+        if (developer):
+            permission = True
         earnedBadges = EarnedBadge.objects.filter(player=player)
         visits = Visit.objects.filter(player=player)
         return render(request, "registration/settings.html", {'user':user, 'earnedBadges':earnedBadges, 'visits':visits, 'permission':permission, 'developer':developer})
@@ -194,3 +195,52 @@ def del_badge(request):
     data = Badge.objects.all()
     return render(request=request, template_name="registration/del_badge.html",
     context={"badges": data})
+
+def add_user(request):
+    if request.method == "POST":
+        # use the existing sign up form for efficiency
+        form = SignUpForm(request.POST)
+        # get the selected group
+        group = request.POST["group"]
+        if form.is_valid():
+            user = form.save() # save the new user
+            # add the new user to the given group
+            group = Group.objects.get(name=group)
+            user.groups.add(group)
+            messages.success(request, "User adding successful.")
+            return redirect('/settings/') # redirects to the settings page
+        else: #if the error is with the user's entries
+            messages.error(request, form.errors)
+            messages.error(request, "invalid - user")
+            print(form.errors)
+    form = SignUpForm()
+    return render(request=request, template_name="registration/add_user.html",
+    context={"user_form": form})
+
+def del_user(request):
+    if request.method == "POST":
+        # remove the correct user
+        User.objects.filter(id=request.POST["user"]).delete()
+        messages.success(request, "User deleting successful.")
+        return redirect('/settings/') # redirects to the settings page
+    data = User.objects.all()
+    return render(request=request, template_name="registration/del_user.html",
+    context={"users": data})
+
+def edit_user(request):
+    if request.method == "POST":
+        # find the user, group, and action
+        user = User.objects.get(id=request.POST["user"])
+        group = Group.objects.get(name=request.POST["group"])
+        action = request.POST["action"]
+        if (action == 'add'):
+            # add user to the new group
+            user.groups.add(group)
+        else:
+            # remove the user from the group
+            user.groups.remove(group)
+        messages.success(request, "User editing successful.")
+        return redirect('/settings/') # redirects to the settings page
+    users = User.objects.all()
+    return render(request=request, template_name="registration/edit_user.html",
+    context={"users": users})
