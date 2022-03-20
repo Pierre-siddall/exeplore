@@ -27,6 +27,7 @@ class PlayerForm(forms.ModelForm):
         exclude = ('score', 'user', 'badges', 'visits' )
 
 class AddLocationForm(forms.ModelForm):
+    icon = forms.FileField(required=False)
     class Meta:
         model = Location
         fields = ('location_name', 'latitude', 'longitude', 'point_value', 'icon')

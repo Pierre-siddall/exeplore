@@ -1,8 +1,10 @@
 from django.test import RequestFactory, TestCase
 from users.models import Player
+from visits.models import Location
 from django.test import Client
 from Exeplore.views import login_view
 from django.contrib.auth.models import User, Group
+from django.core.exceptions import ObjectDoesNotExist
 
 class ClientTestCase(TestCase):
     def setUp(self):
@@ -43,6 +45,38 @@ class ClientTestCase(TestCase):
         self.assertTemplateUsed(response, template_name='registration/settings.html')
         # TODO: check badges earned (when adding them is implemented)
         # TODO: check visits (when adding them is implemented)
+
+    def test_gk_permissions(self):
+        # make the user a gamekeeper
+        group = Group.objects.create(name = 'Gamekeeper')
+        self.user.groups.add(group)
+        player = Player.objects.get(user = self.user)
+        # call the settings page
+        response = self.c.get('/settings/')
+        self.assertEqual(response.status_code, 200)
+        # check the permission was passed correctly
+        self.assertEqual(response.context['permission'], True)
+        self.assertTemplateUsed(response, template_name='registration/settings.html')
+
+    def test_dev_permissions(self):
+        # TODO: same as for gamekeeper
+        self.assertEqual(True, True)
+
+    def test_edit_locations(self):
+        # test a location can be added
+        response = self.c.post('/add_location/', {'location_name':'NEW', 'latitude':10, 'longitude':10, 'point_value':10})
+        location = Location.objects.get(location_name='NEW')
+        self.assertEqual(location.location_name, 'NEW')
+        self.assertRedirects(response, '/settings/', status_code=302, target_status_code=200, msg_prefix='', fetch_redirect_response=True)
+        # test that location can be deleted
+        response = self.c.post('/del_location/', {'location':location.id})
+        with self.assertRaises(ObjectDoesNotExist):
+            location = Location.objects.get(location_name='NEW')
+        self.assertRedirects(response, '/settings/', status_code=302, target_status_code=200, msg_prefix='', fetch_redirect_response=True)
+
+    def test_edit_badges(self):
+        # TODO: same tests as for locations but now for badges
+        self.assertEqual(True, True)
 
     def test_badges_page(self):
         # TODO: check badges earned (when adding them is implemented)

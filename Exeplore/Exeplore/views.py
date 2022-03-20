@@ -152,6 +152,7 @@ def add_location(request):
         else:
             messages.error(request, form.errors)
             messages.error(request, "invalid - location")
+            print(form.errors)
     form = AddLocationForm()
     return render(request=request, template_name="registration/add_location.html",
     context={"location_form": form})
