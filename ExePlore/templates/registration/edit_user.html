@@ -1,0 +1,40 @@
+{% extends 'registration/header.html' %} <!-- use standard header -->
+{% block content %} <!-- begin content -->
+
+<!-- mobile-container to look like a phone -->
+<div class="mobile-container">
+    <h1 class="white">Edit User's Group</h1>
+    <form method="POST">
+        <!-- does not use a form but uses a loaded list of badges -->
+        {% csrf_token %}
+        {% if users %}
+        <label for="user">Choose a user:</label>
+        <!-- create a select option for the user to be edited -->
+        <select name="user" id="user">
+            {% for u in users %}
+            <option value="{{u.id}}">{{u.username}}</option>
+            {% endfor %}
+        </select>
+        {% else %}
+        No Data
+        {% endif %}
+        <br>
+        <label for="group">Choose a group:</label>
+        <!-- create a select option for the group chosen -->
+        <select name="group" id="group">
+            <option value="Player">Player</option>
+            <option value="Gamekeeper">Gamekeeper</option>
+        </select>
+        <br>
+        <label for="action">Choose a action:</label>
+        <!-- create a select option for the action to take -->
+        <select name="action" id="action">
+            <option value="add">Add</option>
+            <option value="remove">Remove</option>
+        </select>
+        <br>
+        <button class="submit" type="submit">Submit</button>
+    </form>
+</div>
+
+{% endblock %}
