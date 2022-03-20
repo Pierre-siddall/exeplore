@@ -57,11 +57,46 @@ class ClientTestCase(TestCase):
         self.assertEqual(response.status_code, 200)
         # check the permission was passed correctly
         self.assertEqual(response.context['permission'], True)
+        self.assertEqual(response.context['developer'], False)
         self.assertTemplateUsed(response, template_name='registration/settings.html')
 
     def test_dev_permissions(self):
-        # TODO: same as for gamekeeper
-        self.assertEqual(True, True)
+        # make the user a developer
+        group = Group.objects.create(name = 'Developer')
+        self.user.groups.add(group)
+        player = Player.objects.get(user = self.user)
+        # call the settings page
+        response = self.c.get('/settings/')
+        self.assertEqual(response.status_code, 200)
+        # check the permission was passed correctly
+        self.assertEqual(response.context['permission'], True)
+        self.assertEqual(response.context['developer'], True)
+        self.assertTemplateUsed(response, template_name='registration/settings.html')
+
+    def test_edit_users(self):
+        # test a user can be added
+        response = self.c.post('/add_user/', {'username':'new', 'first_name':'new', 'last_name':'new', 'email':'new@exeter.ac.uk', 'password1':'user1234', 'password2':'user1234', 'group':'Player'})
+        user = User.objects.get(username='new')
+        self.assertEqual(user.username, 'new')
+        self.assertEqual(user.groups.filter(name='Gamekeeper').exists(), False)
+        self.assertEqual(user.groups.filter(name='Player').exists(), True)
+        self.assertRedirects(response, '/settings/', status_code=302, target_status_code=200, msg_prefix='', fetch_redirect_response=True)
+        # test that user can be made a gamekeeper
+        Group.objects.create(name = 'Gamekeeper')
+        response = self.c.post('/edit_user/', {'user':user.id, 'group':'Gamekeeper', 'action':'add'})
+        self.assertEqual(user.groups.filter(name='Gamekeeper').exists(), True)
+        self.assertEqual(user.groups.filter(name='Player').exists(), True)
+        self.assertRedirects(response, '/settings/', status_code=302, target_status_code=200, msg_prefix='', fetch_redirect_response=True)
+        # test that user can be removed from the player group
+        response = self.c.post('/edit_user/', {'user':user.id, 'group':'Player', 'action':'remove'})
+        self.assertEqual(user.groups.filter(name='Gamekeeper').exists(), True)
+        self.assertEqual(user.groups.filter(name='Player').exists(), False)
+        self.assertRedirects(response, '/settings/', status_code=302, target_status_code=200, msg_prefix='', fetch_redirect_response=True)
+        # test that user can be deleted
+        response = self.c.post('/del_user/', {'user':user.id})
+        with self.assertRaises(ObjectDoesNotExist):
+            user = User.objects.get(username='new')
+        self.assertRedirects(response, '/settings/', status_code=302, target_status_code=200, msg_prefix='', fetch_redirect_response=True)
 
     def test_badges_page(self):
         # TODO: check badges earned (when adding them is implemented)
