@@ -24,11 +24,10 @@
            <img src="../../media/{{ v.icon }}"style="opacity:1">
             {{v.location_name}}
         </p>
-            
         {% endfor %}
         {% else %}
-        <h1>No Data</h1> <!-- in case no data was loaded -->
         {% endif %}
+
         {% for l in locations %}
         <p class="incomplete"> <!-- list the location name -->
             <img src="../../media/{{ l.icon }}">
@@ -36,6 +35,7 @@
         </p>
         {% endfor %}
         {% else %}
+        <h1>No Data</h1> <!-- in case no data was loaded -->
         {% endif %}
 
         

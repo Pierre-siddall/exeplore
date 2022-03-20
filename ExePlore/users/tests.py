@@ -1,9 +1,12 @@
 from django.test import RequestFactory, TestCase
 from users.models import Player
+from visits.models import Location, Badge
 from django.test import Client
 from Exeplore.views import login_view
 from django.contrib.auth.models import User, Group
+from django.core.exceptions import ObjectDoesNotExist
 
+""" Test cases for everything that requires a player """
 class ClientTestCase(TestCase):
     def setUp(self):
         # create a user
@@ -43,6 +46,22 @@ class ClientTestCase(TestCase):
         self.assertTemplateUsed(response, template_name='registration/settings.html')
         # TODO: check badges earned (when adding them is implemented)
         # TODO: check visits (when adding them is implemented)
+
+    def test_gk_permissions(self):
+        # make the user a gamekeeper
+        group = Group.objects.create(name = 'Gamekeeper')
+        self.user.groups.add(group)
+        player = Player.objects.get(user = self.user)
+        # call the settings page
+        response = self.c.get('/settings/')
+        self.assertEqual(response.status_code, 200)
+        # check the permission was passed correctly
+        self.assertEqual(response.context['permission'], True)
+        self.assertTemplateUsed(response, template_name='registration/settings.html')
+
+    def test_dev_permissions(self):
+        # TODO: same as for gamekeeper
+        self.assertEqual(True, True)
 
     def test_badges_page(self):
         # TODO: check badges earned (when adding them is implemented)

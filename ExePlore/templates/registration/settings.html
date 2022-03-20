@@ -47,6 +47,13 @@
         <!-- display the badges they've earned, in a list with icons -->
         <div id="badges_earned">
             <h3 class="grey">Badges earned </h3>
+            <!-- check the user has permissions to edit badges -->
+            {% if permission %}
+            <button class="small" type="add_badge"><a href="/add_badge">New Badge</a></button>
+            <button class="small" type="del_badge"><a href="/del_badge">Delete Badge</a></button>
+            {% else %}
+            {% endif %}
+            <!-- display their badges -->
             {% if earnedBadges %}
             {% for eb in earnedBadges %}
             <img src="../../media/{{ eb.badge.icon }}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;

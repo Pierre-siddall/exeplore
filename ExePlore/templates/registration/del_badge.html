@@ -3,16 +3,16 @@
 
 <!-- mobile-container to look like a phone -->
 <div class="mobile-container">
-    <h1 class="white">Delete Location</h1>
+    <h1 class="white">Delete Badge</h1>
     <form method="POST">
-        <!-- does not use a form but uses a loaded list of locations -->
+        <!-- does not use a form but uses a loaded list of badges -->
         {% csrf_token %}
-        {% if locations %}
-        <label for="location">Choose a location:</label>
+        {% if badges %}
+        <label for="badge">Choose a badge:</label>
         <!-- create a select option for the badge to be deleted -->
-        <select name="location" id="location">
-            {% for l in locations %}
-            <option value="{{l.id}}">{{l.location_name}}</option>
+        <select name="badge" id="badge">
+            {% for b in badges %}
+            <option value="{{b.id}}">{{b.badge_name}}</option>
             {% endfor %}
         </select>
         <br>

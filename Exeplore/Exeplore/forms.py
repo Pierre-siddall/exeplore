@@ -3,7 +3,7 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import get_user_model
 from users.models import Player
-from visits.models import Location
+from visits.models import Location, Badge
 User = get_user_model()
 
 class SignUpForm(UserCreationForm):
@@ -27,7 +27,16 @@ class PlayerForm(forms.ModelForm):
         exclude = ('score', 'user', 'badges', 'visits' )
 
 class AddLocationForm(forms.ModelForm):
+    """ This class represents the new location form """
+    icon = forms.FileField(required=False) # an icon image is not required
     class Meta:
         model = Location
         fields = ('location_name', 'latitude', 'longitude', 'point_value', 'icon')
+
+class AddBadgeForm(forms.ModelForm):
+    """ This class represents the new badge form """
+    icon = forms.FileField(required=False) # an icon image is not required
+    class Meta:
+        model = Badge
+        fields = ('badge_name', 'description', 'tier', 'icon')
 
