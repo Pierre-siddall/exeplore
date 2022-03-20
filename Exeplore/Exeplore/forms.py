@@ -3,7 +3,7 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import get_user_model
 from users.models import Player
-from visits.models import Location
+from visits.models import Location, Badge
 User = get_user_model()
 
 class SignUpForm(UserCreationForm):
@@ -31,4 +31,10 @@ class AddLocationForm(forms.ModelForm):
     class Meta:
         model = Location
         fields = ('location_name', 'latitude', 'longitude', 'point_value', 'icon')
+
+class AddBadgeForm(forms.ModelForm):
+    icon = forms.FileField(required=False)
+    class Meta:
+        model = Badge
+        fields = ('badge_name', 'description', 'tier', 'icon')
 

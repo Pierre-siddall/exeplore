@@ -1,0 +1,25 @@
+{% extends 'registration/header.html' %} <!-- use standard header -->
+{% block content %} <!-- begin content -->
+
+<!-- mobile-container to look like a phone -->
+<div class="mobile-container">
+    <!-- add location form from forms.py -->
+    <h1 class="white">Delete Badge</h1>
+    <form method="POST">
+        {% csrf_token %}
+        {% if badges %}
+        <label for="badge">Choose a badge:</label>
+        <select name="badge" id="badge">
+            {% for b in badges %}
+            <option value="{{b.id}}">{{b.badge_name}}</option>
+            {% endfor %}
+        </select>
+        {% else %}
+        No Data
+        {% endif %}
+        <br>
+        <button class="submit" type="submit">Delete</button>
+    </form>
+</div>
+
+{% endblock %}

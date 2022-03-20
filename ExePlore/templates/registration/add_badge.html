@@ -1,0 +1,17 @@
+{% extends 'registration/header.html' %} <!-- use standard header -->
+{% block content %} <!-- begin content -->
+{% load crispy_forms_tags %} <!-- use django's form functionality -->
+
+<!-- mobile-container to look like a phone -->
+<div class="mobile-container">
+    <!-- add location form from forms.py -->
+    <h1 class="white">Add Badge</h1>
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ badge_form|crispy }} <!-- load in form -->
+        <br>
+        <button class="submit" type="submit">Submit</button>
+    </form>
+</div>
+
+{% endblock %}

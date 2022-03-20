@@ -10,7 +10,7 @@ from visits.models import Location
 
 from visits.models import Badge, Location
 
-from .forms import SignUpForm, PlayerForm, AddLocationForm
+from .forms import SignUpForm, PlayerForm, AddLocationForm, AddBadgeForm
 User = get_user_model()
 
 def register(request):
@@ -165,3 +165,28 @@ def del_location(request):
     data = Location.objects.all()
     return render(request=request, template_name="registration/del_location.html",
     context={"locations": data})
+
+def add_badge(request):
+    if request.method == "POST":
+        form = AddBadgeForm(request.POST, request.FILES)
+        #if the error is with the user's entries
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Badge adding successful.")
+            return redirect('/settings/') # redirects to the settings page
+        else:
+            messages.error(request, form.errors)
+            messages.error(request, "invalid - badge")
+            print(form.errors)
+    form = AddBadgeForm()
+    return render(request=request, template_name="registration/add_badge.html",
+    context={"badge_form": form})
+
+def del_badge(request):
+    if request.method == "POST":
+        Badge.objects.filter(id=request.POST["badge"]).delete()
+        messages.success(request, "Badge deleting successful.")
+        return redirect('/settings/') # redirects to the settings page
+    data = Badge.objects.all()
+    return render(request=request, template_name="registration/del_badge.html",
+    context={"badges": data})
