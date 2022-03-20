@@ -3,22 +3,23 @@
 
 <!-- mobile-container to look like a phone -->
 <div class="mobile-container">
-    <!-- add location form from forms.py -->
     <h1 class="white">Delete Badge</h1>
     <form method="POST">
+        <!-- does not use a form but uses a loaded list of badges -->
         {% csrf_token %}
         {% if badges %}
         <label for="badge">Choose a badge:</label>
+        <!-- create a select option for the badge to be deleted -->
         <select name="badge" id="badge">
             {% for b in badges %}
             <option value="{{b.id}}">{{b.badge_name}}</option>
             {% endfor %}
         </select>
+        <br>
+        <button class="submit" type="submit">Delete</button>
         {% else %}
         No Data
         {% endif %}
-        <br>
-        <button class="submit" type="submit">Delete</button>
     </form>
 </div>
 

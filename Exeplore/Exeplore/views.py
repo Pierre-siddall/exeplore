@@ -144,12 +144,11 @@ def badges(request):
 def add_location(request):
     if request.method == "POST":
         form = AddLocationForm(request.POST, request.FILES)
-        #if the error is with the user's entries
         if form.is_valid():
-            form.save()
+            form.save() # add a location
             messages.success(request, "Location adding successful.")
             return redirect('/settings/') # redirects to the settings page
-        else:
+        else: #if the error is with the user's entries
             messages.error(request, form.errors)
             messages.error(request, "invalid - location")
             print(form.errors)
@@ -159,6 +158,7 @@ def add_location(request):
 
 def del_location(request):
     if request.method == "POST":
+        # remove the correct location
         Location.objects.filter(id=request.POST["location"]).delete()
         messages.success(request, "Location deleting successful.")
         return redirect('/settings/') # redirects to the settings page
@@ -169,12 +169,11 @@ def del_location(request):
 def add_badge(request):
     if request.method == "POST":
         form = AddBadgeForm(request.POST, request.FILES)
-        #if the error is with the user's entries
         if form.is_valid():
-            form.save()
+            form.save() # save the new badge
             messages.success(request, "Badge adding successful.")
             return redirect('/settings/') # redirects to the settings page
-        else:
+        else: #if the error is with the user's entries
             messages.error(request, form.errors)
             messages.error(request, "invalid - badge")
             print(form.errors)
@@ -184,6 +183,7 @@ def add_badge(request):
 
 def del_badge(request):
     if request.method == "POST":
+        # remove the correct badge
         Badge.objects.filter(id=request.POST["badge"]).delete()
         messages.success(request, "Badge deleting successful.")
         return redirect('/settings/') # redirects to the settings page

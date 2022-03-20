@@ -27,13 +27,15 @@ class PlayerForm(forms.ModelForm):
         exclude = ('score', 'user', 'badges', 'visits' )
 
 class AddLocationForm(forms.ModelForm):
-    icon = forms.FileField(required=False)
+    """ This class represents the new location form """
+    icon = forms.FileField(required=False) # an icon image is not required
     class Meta:
         model = Location
         fields = ('location_name', 'latitude', 'longitude', 'point_value', 'icon')
 
 class AddBadgeForm(forms.ModelForm):
-    icon = forms.FileField(required=False)
+    """ This class represents the new badge form """
+    icon = forms.FileField(required=False) # an icon image is not required
     class Meta:
         model = Badge
         fields = ('badge_name', 'description', 'tier', 'icon')
