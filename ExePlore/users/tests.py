@@ -29,14 +29,12 @@ class ClientTestCase(TestCase):
 
     def test_home_page(self):
         # test the home page renders correctly
-        # TODO: make a location
         response = self.c.get('/home/')
         name = self.user.first_name
         passed_name = response.context['user'].first_name
         self.assertEqual(response.status_code, 200)
         self.assertEqual(name, passed_name)
         self.assertTemplateUsed(response, template_name='registration/home.html')
-        # TODO: check the lists of latitude and longitude
 
     def test_settings_page(self):
         # TODO: set a score (when this is implemented)
