@@ -1,11 +1,12 @@
 from django.test import RequestFactory, TestCase
 from users.models import Player
-from visits.models import Location
+from visits.models import Location, Badge
 from django.test import Client
 from Exeplore.views import login_view
 from django.contrib.auth.models import User, Group
 from django.core.exceptions import ObjectDoesNotExist
 
+""" Test cases for everything that requires a player """
 class ClientTestCase(TestCase):
     def setUp(self):
         # create a user
@@ -60,22 +61,6 @@ class ClientTestCase(TestCase):
 
     def test_dev_permissions(self):
         # TODO: same as for gamekeeper
-        self.assertEqual(True, True)
-
-    def test_edit_locations(self):
-        # test a location can be added
-        response = self.c.post('/add_location/', {'location_name':'NEW', 'latitude':10, 'longitude':10, 'point_value':10})
-        location = Location.objects.get(location_name='NEW')
-        self.assertEqual(location.location_name, 'NEW')
-        self.assertRedirects(response, '/settings/', status_code=302, target_status_code=200, msg_prefix='', fetch_redirect_response=True)
-        # test that location can be deleted
-        response = self.c.post('/del_location/', {'location':location.id})
-        with self.assertRaises(ObjectDoesNotExist):
-            location = Location.objects.get(location_name='NEW')
-        self.assertRedirects(response, '/settings/', status_code=302, target_status_code=200, msg_prefix='', fetch_redirect_response=True)
-
-    def test_edit_badges(self):
-        # TODO: same tests as for locations but now for badges
         self.assertEqual(True, True)
 
     def test_badges_page(self):
