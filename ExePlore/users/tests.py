@@ -1,5 +1,5 @@
 from django.test import RequestFactory, TestCase
-from users.models import Player
+from users.models import Player, EarnedBadge, Visit
 from visits.models import Location, Badge
 from django.test import Client
 from Exeplore.views import login_view
@@ -9,15 +9,25 @@ from django.core.exceptions import ObjectDoesNotExist
 """ Test cases for everything that requires a player """
 class ClientTestCase(TestCase):
     def setUp(self):
-        # create a user
+        # create a user as a player
         self.user = User.objects.create_user('edwinhubble', None, 'HubbleSpace1990', first_name='Edwin', last_name='Hubble')
-        # make them a player
         self.group = Group.objects.create(name = 'Player')
         self.user.groups.add(self.group)
-        # get the player object too
         self.player = Player.objects.get(user = self.user)
-        self.c = Client()
+        # make two locations
+        self.location = Location.objects.create(location_name='location', latitude=10.0, longitude=20.0, point_value=30)
+        self.location2 = Location.objects.create(location_name='second', latitude=10.0, longitude=20.0, point_value=10)
+        # make two badges
+        self.badge = Badge.objects.create(badge_name='badge', description='', tier='AU')
+        self.badge2 = Badge.objects.create(badge_name='second', description='', tier='PT')
+        # make a visit
+        self.visit = Visit.objects.create(player=self.player, location=self.location2, visit_datetime='')
+        self.player.set_score(self.location2)
+        self.player.save()
+        # make an earned badge
+        self.earned = EarnedBadge.objects.create(player=self.player, badge=self.badge2, badge_earned_datetime='')
         # create a session cookie
+        self.c = Client()
         self.session = self.c.session
         self.session['username'] = 'edwinhubble'
         self.session.save()
@@ -28,39 +38,37 @@ class ClientTestCase(TestCase):
         self.assertRedirects(response, '/home/', status_code=302, target_status_code=200, msg_prefix='', fetch_redirect_response=True)
 
     def test_home_page(self):
-        # test the home page renders correctly
-        # make a location
-        location = Location.objects.create(location_name='new', latitude=10.0, longitude=20.0, point_value=30)
         # call the home page
         response = self.c.get('/home/')
         name = self.user.first_name
         passed_name = response.context['user'].first_name
-        lats = [10.0]
-        longs = [20.0]
+        # check the home page renders
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, template_name='registration/home.html')
         # check the correct values were passed
         self.assertEqual(name, passed_name)
-        self.assertEqual(lats, response.context['lats'])
-        self.assertEqual(longs, response.context['lngs'])
-
+        self.assertEqual([10.0, 10.0], response.context['lats'])
+        self.assertEqual([20.0, 20.0], response.context['lngs'])
 
     def test_settings_page(self):
-        # TODO: set a score (when this is implemented)
-        level = self.player.get_level()
         response = self.c.get('/settings/')
+        # get passed values
         passed_level = Player.objects.get(user = response.context['user']).get_level()
+        passed_visits = list(response.context['visits'])
+        passed_ebs = list(response.context['earnedBadges'])
         self.assertEqual(response.status_code, 200)
-        self.assertEqual(level, passed_level)
+        self.assertEqual(1, passed_level)
         self.assertTemplateUsed(response, template_name='registration/settings.html')
-        # TODO: check badges earned (when adding them is implemented)
-        # TODO: check visits (when adding them is implemented)
+        # check the user's earned badges
+        self.assertEqual(passed_ebs, [self.earned])
+        # check the user's visits
+        self.assertEqual(passed_visits, [self.visit])
 
     def test_gk_permissions(self):
         # make the user a gamekeeper
         group = Group.objects.create(name = 'Gamekeeper')
         self.user.groups.add(group)
-        player = Player.objects.get(user = self.user)
+        # player = Player.objects.get(user = self.user)
         # call the settings page
         response = self.c.get('/settings/')
         self.assertEqual(response.status_code, 200)
@@ -73,7 +81,7 @@ class ClientTestCase(TestCase):
         # make the user a developer
         group = Group.objects.create(name = 'Developer')
         self.user.groups.add(group)
-        player = Player.objects.get(user = self.user)
+        # player = Player.objects.get(user = self.user)
         # call the settings page
         response = self.c.get('/settings/')
         self.assertEqual(response.status_code, 200)
@@ -108,14 +116,24 @@ class ClientTestCase(TestCase):
         self.assertRedirects(response, '/settings/', status_code=302, target_status_code=200, msg_prefix='', fetch_redirect_response=True)
 
     def test_badges_page(self):
-        # TODO: check badges earned (when adding them is implemented)
-        self.assertEqual(True, True)
-        # self.assertTemplateUsed(response, template_name='registration/badges.html')
+        response = self.c.get('/badges/')
+        # get the lists of earned and unearned badges
+        passed_badges = list(response.context['badges'])
+        passed_earned = list(response.context['earnedBadges'])
+        # check the page runs correctly
+        self.assertTemplateUsed(response, template_name='registration/badges.html')
+        self.assertEqual(passed_badges, [self.badge])
+        self.assertEqual(passed_earned, [self.badge2])
 
-    def test_visits_page(self):
-        # TODO: check visits (when adding them is implemented)
-        self.assertEqual(True, True)
-        # self.assertTemplateUsed(response, template_name='registration/locations.html')
+    def test_locations_page(self):
+        response = self.c.get('/locations/')
+        # get the lists of earned and unearned badges
+        passed_locations = list(response.context['locations'])
+        passed_visits = list(response.context['visits'])
+        # check the page runs correctly
+        self.assertTemplateUsed(response, template_name='registration/locations.html')
+        self.assertEqual(passed_locations, [self.location])
+        self.assertEqual(passed_visits, [self.location2])
 
     def test_regisration(self):
         # test creation of user using registration

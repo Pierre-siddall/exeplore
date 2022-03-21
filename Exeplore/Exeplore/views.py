@@ -77,8 +77,8 @@ def home(request):
     lats = []
     lngs = []
     for location in data:
-        lats.append(float(location.latitude))
-        lngs.append(float(location.longitude))
+        lats.append(float(location.get_lat()))
+        lngs.append(float(location.get_long()))
 
     return render(request, "registration/home.html", {'user':user, 'lats':lats, 'lngs':lngs})
 

@@ -15,6 +15,8 @@ class Player(models.Model):
     badges = models.ManyToManyField(Badge, verbose_name = "Badges",through='EarnedBadge')
     visits = models.ManyToManyField(Location, verbose_name = "Visits", through='Visit')
     score = models.IntegerField("Score", default = 0)
+    def set_score(self, location):
+        self.score += location.point_value
     def get_level(self):
         return int(self.score/10)
     def __str__(self):
