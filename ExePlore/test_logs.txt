@@ -1,4 +1,9 @@
 Test logs for elements that cannot use automated testing
 
-Test            Expected Outcome        Actual Outcome          Date
-Example         200 status code         200 status code         17/03
+Test            How             Expected Outcome    Actual Outcome      Date
+Map clusters    Home page       Location markers    Location markers    21/03
+                                    in clusteres        in clusteres
+Transparent     edwinhubble     First 3 opaque,     First 3 opaque,     21/03
+    badges          badges pg       the rest not        the rest not
+Transparent     edwinhubble     First 3 opaque,     First 3 opaque,     21/03
+    locations       locs pg         the rest not        the rest not
