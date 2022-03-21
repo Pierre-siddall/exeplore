@@ -73,24 +73,14 @@ def home(request):
     name = request.session.get('username')
     user = User.objects.get(username=name)
     data = Location.objects.all()
-    new_file = open("locations.txt", "w")
-    
-    
-    for d in data:
-        new_file.write(str(d) + ' ')
-        new_file.write(str(d.get_lat()) + ' ')
-        new_file.write(str(d.get_long()) + '\n')
 
-    new_file.close()
+    lats = []
+    lngs = []
+    for location in data:
+        lats.append(float(location.latitude))
+        lngs.append(float(location.longitude))
 
-    """
-   
-    with ("locations.txt", 'w') as f:
-        for d in data:
-            f.write(d)
-    """
-
-    return render(request, "registration/home.html", {'user':user})
+    return render(request, "registration/home.html", {'user':user, 'lats':lats, 'lngs':lngs})
 
 def splash(request):
     """This function renders the splash page"""

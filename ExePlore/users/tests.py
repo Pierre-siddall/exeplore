@@ -29,12 +29,21 @@ class ClientTestCase(TestCase):
 
     def test_home_page(self):
         # test the home page renders correctly
+        # make a location
+        location = Location.objects.create(location_name='new', latitude=10.0, longitude=20.0, point_value=30)
+        # call the home page
         response = self.c.get('/home/')
         name = self.user.first_name
         passed_name = response.context['user'].first_name
+        lats = [10.0]
+        longs = [20.0]
         self.assertEqual(response.status_code, 200)
-        self.assertEqual(name, passed_name)
         self.assertTemplateUsed(response, template_name='registration/home.html')
+        # check the correct values were passed
+        self.assertEqual(name, passed_name)
+        self.assertEqual(lats, response.context['lats'])
+        self.assertEqual(longs, response.context['lngs'])
+
 
     def test_settings_page(self):
         # TODO: set a score (when this is implemented)
