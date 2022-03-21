@@ -40,5 +40,6 @@ urlpatterns = [
     path('del_badge/', views.del_badge, name = 'del_badge'),
     path('add_user/', views.add_user, name = 'add_user'),
     path('del_user/', views.del_user, name = 'del_user'),
-    path('edit_user/', views.edit_user, name = 'edit_user')
+    path('edit_user/', views.edit_user, name = 'edit_user'),
+    path('scanning/', views.scanning, name = 'scanning')
 ]+ static(settings.MEDIA_URL, document_root= settings.MEDIA_ROOT)
