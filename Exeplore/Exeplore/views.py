@@ -7,6 +7,7 @@ from django.contrib.auth import login, authenticate, get_user_model, logout
 from django.contrib.auth.models import Group
 from users.models import Player, EarnedBadge, Visit
 from visits.models import Location
+import datetime
 
 from visits.models import Badge, Location
 
@@ -234,3 +235,20 @@ def edit_user(request):
     users = User.objects.all()
     return render(request=request, template_name="registration/edit_user.html",
     context={"users": users})
+
+def scanning(request):
+    if request.method == "POST":
+        # saving the fact the user visited a location
+        location = Location.objects.get(location_name=request.POST["location"])
+        name = request.session.get('username')
+        user = User.objects.get(username=name)
+        player = Player.objects.get(user=user)
+        current_datetime = datetime.datetime.now() 
+        # make the visit
+        visit = Visit.objects.create(player=player, location=location, visit_datetime=current_datetime)
+        # save the player's new score
+        player.set_score(location)
+        player.save()
+        messages.success(request, "Visit logging successful.")
+        return redirect('/locations/') # redirects to the home page
+    return render(request=request, template_name="registration/scanning.html")
