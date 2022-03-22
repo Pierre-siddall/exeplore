@@ -23,8 +23,15 @@
             <label for="location">Location visited:</label>
             <input type="text" name="location" id="location" readonly>
             <!-- needs more html for showing the question and answers -->
+            <div id="question"></div>
+            <input type="radio" name="radio" id="radio1"><label class="options" id="option1"> <span class="checkmark"></span> </label><br> 
+            <input type="radio" name="radio" id="radio2"><label class="options" id="option2"> <span class="checkmark"></span> </label><br> 
+            <input type="radio" name="radio" id="radio3"><label class="options" id="option3"> <span class="checkmark"></span> </label>
             <br>
+            <input type="text" name="answer" id="answer" readonly hidden>
+
             <button class="submit" type="submit">Submit</button>
+
         </form>
     </div>
     <script src="https://unpkg.com/html5-qrcode"></script>
