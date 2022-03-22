@@ -156,6 +156,10 @@ a:visited{
     color:#b46e35; 
 }
 
+a.standard-button:visisted{
+    color:#ececec; 
+}
+
 div#edit_users button.small {
     float: none;
     width: 30%;
