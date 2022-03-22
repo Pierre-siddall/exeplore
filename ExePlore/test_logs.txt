@@ -15,3 +15,5 @@ Scanning it     Scan same one   Only appears in     Only appears in     22/03
     twice           twice           loc list once       loc list once
 Generate QR     Scan test       Location becomes    Location becomes    22/03
     codes work                      opaque              opaque
+Bitly link      Click the link  Takes you to the    Takes you to the    22/03
+                                    splash screen       splash screen
