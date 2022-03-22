@@ -250,7 +250,7 @@ div#location p.incomplete {
 
 
 /* settings page headers */
-div#recent_vists h3, div#badges_earned h3, div#user_info h3, div#edit_users h3 {
+div#recent_vists h3, div#badges_earned h3, div#user_info h3, div#edit_users h3, div#leaderboard_area h3 {
     text-align: center;
 }
 
