@@ -86,10 +86,7 @@ function initialiseMap(){
             },
         ],
     });
-    infoWin=new google.maps.InfoWindow({
-        content: "",
-        disableAutoPan: true,
-    });
+    infoWin=new google.maps.InfoWindow();
 
     // Creating a button that shows the current location
     const currentLocation= document.createElement("button");
@@ -120,10 +117,13 @@ function initialiseMap(){
         }
     });
 
+    const labels = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+
     const markers = locations.map((position, i) => {
-        const label = labels[i];
+        const label = labels[i % labels.length];
         const marker = new google.maps.Marker({
             position,
+            label,
         });
 
         marker.addListener("click", () =>{
@@ -137,11 +137,6 @@ function initialiseMap(){
 }
 
 var script = document.currentScript
-
-var names = script.getAttribute('data-names')
-names.color = "black"
-names = names.substring(1, (names.length-1))
-names = names.split(', ')
 var lats = script.getAttribute('data-lats')
 lats = lats.substring(1, (lats.length-1))
 lats = lats.split(', ')
@@ -154,11 +149,6 @@ for (let i = 0; i < lats.length; i++) {
     lo = parseFloat(lngs[i])
     locations = locations.concat({lat:la, lng:lo});
 }
-var labels = []
-for (let j = 0; j < names.length; j++){
-    labels = labels.concat(names[j])
-}
-
 
 function handleLocationError(browserHasGeolocation, infoWin, pos){
     infoWin.setPosition(pos);

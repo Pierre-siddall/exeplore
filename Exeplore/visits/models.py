@@ -14,9 +14,6 @@ class Location(models.Model):
     def __str__(self):
         return self.location_name
 
-    def get_name(self):
-        return self.location_name
-
     def get_lat(self):  
         return self.latitude
 
