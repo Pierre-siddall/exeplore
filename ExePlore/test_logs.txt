@@ -7,3 +7,7 @@ Transparent     edwinhubble     First 3 opaque,     First 3 opaque,     21/03
     badges          badges pg       the rest not        the rest not
 Transparent     edwinhubble     First 3 opaque,     First 3 opaque,     21/03
     locations       locs pg         the rest not        the rest not
+Scanning a      Scan qr code    Loc name shows      Loc name shows      22/03
+    location                        at bottom           at bottom
+Scanning it     Scan same one   Only appears in     Only appears in     22/03
+    twice           twice           loc list once       loc list once
