@@ -149,3 +149,15 @@ class ClientTestCase(TestCase):
         self.session = self.c.session
         with self.assertRaises(KeyError):
             username = self.session['username']
+
+    def test_scan_location(self):
+        response = self.c.post('/scanning/', {'location':'location'})
+        self.assertRedirects(response, '/locations/', status_code=302, target_status_code=200, msg_prefix='', fetch_redirect_response=True)
+        # get the visits currently set
+        visits = Visit.objects.filter(player=self.player)
+        locations = []
+        for v in visits:
+            # get the locations of those visits
+            locations.append(v.location)
+        # check the locations have been recorded as visited
+        self.assertEqual(locations, [self.location2, self.location])

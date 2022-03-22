@@ -115,7 +115,13 @@ def locations(request):
     visits = Visit.objects.filter(player=player)
     all_locations = []
     for v in visits:
-        all_locations.append(v.location)
+        found = False
+        for a in all_locations:
+            if a.location_name == v.location.location_name:
+                found = True
+                break
+        if not found:
+            all_locations.append(v.location)
     for item in data:
         if item in all_locations:
             data.remove(item)
