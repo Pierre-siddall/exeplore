@@ -7,13 +7,13 @@
     <!-- navigation bar -->
     <div class="topnav" id="links">
         <!-- link to settings page i.e. this one -->
-        <button class="icon icon-selected"><a href="/home"><img src="{% static 'images/home.png' %}"></a></button><!--
+        <a href="/home"><button class="icon icon-selected"><img src="{% static 'images/home.png' %}" class="top-icon"></button></a><!--
         TODO: open camera
-        --><button class="icon"><a href="/scanning"><img src="{% static 'images/qr.png' %}"></a></button><!--
+        --><a href="/scanning"><button class="icon"><img src="{% static 'images/qr.png' %}" class="top-icon"></button></a><!--
         link to locations page
-        --><button class="icon"><a href="/locations"> <img src="{% static 'images/locations.png' %}"></a></button><!--
+        --><a href="/locations"><button class="icon"><img src="{% static 'images/locations.png' %}" class="top-icon"></button></a><!--
         link to badges page
-        --><button class="icon"><a href="/badges"><img src="{% static 'images/badges.png' %}"></a></button>
+        --><a href="/badges"><button class="icon"><img src="{% static 'images/badges.png' %}" class="top-icon"></button></a>
     </div>
     <div id="location">
         <h1 class="grey">Settings</h1>
@@ -26,7 +26,7 @@
             {% if user %}
             {{user.first_name}}
             <!-- link to a page where the user chan change their information -->
-            <button class="small" type="change"><a href="/change">Change</a></button>
+            <a href="/change"><button class="small" type="change">Change</button></a>
             {% else %}
             No Name
             {% endif %}</p>
@@ -94,9 +94,9 @@
         </div>
         <br>
         <!-- triggers the user logging out -->
-        <button class="submit" type="logout"><a href="/logout">Log out</a></button>
+        <a href="/logout"><button class="submit" type="logout">Log out</button></a>
         <!-- returns the user to the splash screen without logging them out -->
-        <button class="submit" type="exit"><a href="/splash">Exit</a></button>
+        <a href="/splash"><button class="submit" type="exit">Exit</button></a>
     </div>
 </div>
     
