@@ -12,7 +12,7 @@
 /*--- standard background for all pages ---*/
 body {
     background-image: url(../images/stars_bg.png);
-    
+    background-attachment: fixed;
     background-color:   #1b1c23;
 
 }
