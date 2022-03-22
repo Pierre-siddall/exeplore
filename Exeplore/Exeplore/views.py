@@ -7,7 +7,7 @@ from django.contrib.auth import login, authenticate, get_user_model, logout
 from django.contrib.auth.models import Group
 from users.models import Player, EarnedBadge, Visit
 from visits.models import Location
-import datetime
+from datetime import datetime, timezone, timedelta
 
 from visits.models import Badge, Location
 
@@ -51,9 +51,16 @@ def login_view(request):
             password = auth_form.cleaned_data.get('password')
             user = authenticate(username=username, password=password)
             if user is not None:
+                last_login = user.last_login
                 login(request, user)
                 messages.info(request, "logged in as", username, ".")
                 request.session['username'] = username
+                if abs(last_login - datetime.now(timezone.utc)) >= timedelta(hours = 24) and abs(last_login - datetime.now(timezone.utc)) <= timedelta(hours=48):
+                    player = Player.objects.get(user=user)
+                    player.extend_streak()
+                elif abs(last_login - datetime.now(timezone.utc)) > timedelta(hours=48):
+                    player = Player.objects.get(user=user)
+                    player.reset_streak()
                 return redirect('/home/')
             else:
                 messages.error(request,"Invalid username and/or password")
@@ -99,9 +106,9 @@ def settings(request):
             developer = user.groups.filter(name='Developer').exists()
         if (developer):
             permission = True
-        earnedBadges = EarnedBadge.objects.filter(player=player)
+        earned_badges = EarnedBadge.objects.filter(player=player)
         visits = Visit.objects.filter(player=player)
-        return render(request, "registration/settings.html", {'user':user, 'earnedBadges':earnedBadges, 'visits':visits, 'permission':permission, 'developer':developer})
+        return render(request, "registration/settings.html", {'user':user, 'earnedBadges':earned_badges, 'visits':visits, 'permission':permission, 'developer':developer})
     except:
         return render(request, "registration/splash.html")
 
@@ -235,6 +242,43 @@ def edit_user(request):
     users = User.objects.all()
     return render(request=request, template_name="registration/edit_user.html",
     context={"users": users})
+def check_badges(user):
+    list_of_badges = Badge.objects.all()
+    player = Player.objects.get(user=user)
+    list_of_visits = Visit.objects.filter(player=player)
+    earned_badges = EarnedBadge.objects.filter(player=player)
+    for b in list_of_badges:
+        if not EarnedBadge.objects.filter(player= player, badge = b).exists():
+            if b.badge_name == "Navigator":
+                for visit in list_of_visits:
+                    if visit.__str__() == "Truro Campus":
+                        achievement = EarnedBadge(player= player, badge = b, badge_earned_datetime= datetime.now())
+                        achievement.save()
+            elif b.badge_name == "Apprentice Astronaut":
+                if list_of_visits.count() >= 25:
+                        achievement = EarnedBadge(player= player, badge = b, badge_earned_datetime= datetime.now())
+                        achievement.save()
+            elif b.badge_name == "Novice Astronaut":
+                if list_of_visits.count() >= 10:
+                    achievement = EarnedBadge(player= player, badge = b, badge_earned_datetime= datetime.now())
+                    achievement.save()
+            elif b.badge_name == "Scanmaster":
+                list_of_player = Player.object.get()
+                for p in list_of_player:
+                    
+            """elif b.badge_name == "Supernova":
+            elif b.badge_name == "Blue Supergiant Star":
+            elif b.badge_name == "Red Giant Star":
+            elif b.badge_name == "Participation Award":
+            elif b.badge_name == "Deadline Daredevil":
+            elif b.badge_name == "Creature of Habit":
+            elif b.badge_name == "Jack of All Planets":
+            elif b.badge_name == "Top of the World":
+            elif b.badge_name == "Galactic Hipster":
+            elif b.badge_name == "Sputnik":
+            elif b.badge_name == "Master Astronaut":
+            elif b.badge_name == "Adept Astronaut":"""
+            
 
 def scanning(request):
     if request.method == "POST":
@@ -243,12 +287,14 @@ def scanning(request):
         name = request.session.get('username')
         user = User.objects.get(username=name)
         player = Player.objects.get(user=user)
-        current_datetime = datetime.datetime.now() 
+        current_datetime = datetime.now() 
         # make the visit
         visit = Visit.objects.create(player=player, location=location, visit_datetime=current_datetime)
         # save the player's new score
         player.set_score(location)
         player.save()
+        visit.save()
+        check_badges(user)
         messages.success(request, "Visit logging successful.")
         return redirect('/locations/') # redirects to the home page
     return render(request=request, template_name="registration/scanning.html")
