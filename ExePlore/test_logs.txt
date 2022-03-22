@@ -1,6 +1,8 @@
 Test logs for elements that cannot use automated testing
 
 Test            How             Expected Outcome    Actual Outcome      Date
+Logging file    Login and       "User logged in     "User logged in     18/03
+                    check           with X..."          with X..."
 Map clusters    Home page       Location markers    Location markers    21/03
                                     in clusteres        in clusteres
 Transparent     edwinhubble     First 3 opaque,     First 3 opaque,     21/03
