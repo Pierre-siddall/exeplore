@@ -13,3 +13,5 @@ Scanning a      Scan qr code    Loc name shows      Loc name shows      22/03
     location                        at bottom           at bottom
 Scanning it     Scan same one   Only appears in     Only appears in     22/03
     twice           twice           loc list once       loc list once
+Generate QR     Scan test       Location becomes    Location becomes    22/03
+    codes work                      opaque              opaque
