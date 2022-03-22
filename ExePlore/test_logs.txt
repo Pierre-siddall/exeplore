@@ -17,3 +17,5 @@ Generate QR     Scan test       Location becomes    Location becomes    22/03
     codes work                      opaque              opaque
 Bitly link      Click the link  Takes you to the    Takes you to the    22/03
                                     splash screen       splash screen
+Badge           Scan truro      Navigator badge won Navigator badge won 22/03
+    recording       location
