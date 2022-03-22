@@ -75,13 +75,15 @@ def home(request):
     user = User.objects.get(username=name)
     data = Location.objects.all()
 
+    location_names = []
     lats = []
     lngs = []
     for location in data:
         lats.append(float(location.get_lat()))
         lngs.append(float(location.get_long()))
+        location_names.append(location.get_name())
 
-    return render(request, "registration/home.html", {'user':user, 'lats':lats, 'lngs':lngs})
+    return render(request, "registration/home.html", {'user':user, 'lats':lats, 'lngs':lngs, 'lct_name': location_names})
 
 def splash(request):
     """This function renders the splash page"""
