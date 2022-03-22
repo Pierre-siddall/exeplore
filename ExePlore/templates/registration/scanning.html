@@ -1,0 +1,45 @@
+{% extends 'registration/header.html' %} <!-- use standard header -->
+{% load static %}
+{% block content %} <!-- begin content -->
+
+<!-- mobile-container to look like a phone -->
+<div class="mobile-container">
+    <!-- navigation bar -->
+    <div class="topnav" id="links">
+        <!-- link to settings page -->
+        <button class="icon"><a href="/settings"><img src="{% static 'images/settings.png' %}"></a></button><!--
+        TODO: open camera
+        --><button class="icon"><a href="/scanning"><img src="{% static 'images/qr.png' %}"></a></button><!--
+        link to locations page
+        --><button class="icon"><a href="/locations"> <img src="{% static 'images/locations.png' %}"></a></button><!--
+        link to badges page
+        --><button class="icon"><a href="/badges"><img src="{% static 'images/badges.png' %}"></a></button>
+    </div>
+    <br>
+    <div id="qr-reader" style="height: 500px; border: none;"></div>
+    <div id="qr-reader-results">
+        <form id="form" method="POST" hidden>
+            {% csrf_token %}
+            <label for="location">Location visited:</label>
+            <input type="text" name="location" id="location" readonly>
+            <!-- needs more html for showing the question and answers -->
+            <br>
+            <button class="submit" type="submit">Submit</button>
+        </form>
+    </div>
+    <script src="https://unpkg.com/html5-qrcode"></script>
+    <script src="https://raw.githubusercontent.com/mebjas/html5-qrcode/master/minified/html5-qrcode.min.js" type = 'text/javascript'></script>
+    <script src="../static/javascript/qrcode.js" type = 'text/javascript'></script>
+</div>
+
+<script>
+    window.addEventListener("load", function(){
+        var image_container = document.getElementById('qr-reader__scan_region');
+        var image = image_container.getElementsByTagName('img');
+        image[0].src = "{% static 'images/qr.png' %}";
+        var link = document.getElementById('qr-reader__dashboard_section_swaplink');
+        link.style.visibility = "hidden"
+    })
+</script>
+
+{% endblock %}

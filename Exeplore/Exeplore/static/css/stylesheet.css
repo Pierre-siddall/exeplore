@@ -124,7 +124,6 @@ button.small {
     border: 0ch;
     width: 20%;
 }
-
 .standard-button{
     background-color: #a43885;
     color: #ececec;
@@ -151,10 +150,20 @@ a:link{
 
 a.standard-button:link{
     color:#ececec; 
- }
+}
 
 a:visited{
     color:#b46e35; 
+}
+
+div#edit_users button.small {
+    float: none;
+    width: 30%;
+    margin: 0%;
+}
+
+div#edit_users button.small[type='del_user'] {
+    margin: 0 4%;
 }
 
 /* --------- formatting the menu bar --------- */
@@ -231,7 +240,7 @@ div#location p.incomplete {
 
 
 /* settings page headers */
-div#recent_vists h3, div#badges_earned h3, div#user_info h3 {
+div#recent_vists h3, div#badges_earned h3, div#user_info h3, div#edit_users h3 {
     text-align: center;
 }
 

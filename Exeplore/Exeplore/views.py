@@ -7,6 +7,7 @@ from django.contrib.auth import login, authenticate, get_user_model, logout
 from django.contrib.auth.models import Group
 from users.models import Player, EarnedBadge, Visit
 from visits.models import Location
+import datetime
 
 from visits.models import Badge, Location
 
@@ -73,24 +74,14 @@ def home(request):
     name = request.session.get('username')
     user = User.objects.get(username=name)
     data = Location.objects.all()
-    new_file = open("locations.txt", "w")
-    
-    
-    for d in data:
-        new_file.write(str(d) + ' ')
-        new_file.write(str(d.get_lat()) + ' ')
-        new_file.write(str(d.get_long()) + '\n')
 
-    new_file.close()
+    lats = []
+    lngs = []
+    for location in data:
+        lats.append(float(location.get_lat()))
+        lngs.append(float(location.get_long()))
 
-    """
-   
-    with ("locations.txt", 'w') as f:
-        for d in data:
-            f.write(d)
-    """
-
-    return render(request, "registration/home.html", {'user':user})
+    return render(request, "registration/home.html", {'user':user, 'lats':lats, 'lngs':lngs})
 
 def splash(request):
     """This function renders the splash page"""
@@ -103,9 +94,14 @@ def settings(request):
         user = User.objects.get(username=name)
         player = Player.objects.get(user=user)
         permission = user.groups.filter(name='Gamekeeper').exists()
+        developer = False
+        if (not permission):
+            developer = user.groups.filter(name='Developer').exists()
+        if (developer):
+            permission = True
         earnedBadges = EarnedBadge.objects.filter(player=player)
         visits = Visit.objects.filter(player=player)
-        return render(request, "registration/settings.html", {'user':user, 'earnedBadges':earnedBadges, 'visits':visits, 'permission':permission})
+        return render(request, "registration/settings.html", {'user':user, 'earnedBadges':earnedBadges, 'visits':visits, 'permission':permission, 'developer':developer})
     except:
         return render(request, "registration/splash.html")
 
@@ -119,7 +115,13 @@ def locations(request):
     visits = Visit.objects.filter(player=player)
     all_locations = []
     for v in visits:
-        all_locations.append(v.location)
+        found = False
+        for a in all_locations:
+            if a.location_name == v.location.location_name:
+                found = True
+                break
+        if not found:
+            all_locations.append(v.location)
     for item in data:
         if item in all_locations:
             data.remove(item)
@@ -190,3 +192,69 @@ def del_badge(request):
     data = Badge.objects.all()
     return render(request=request, template_name="registration/del_badge.html",
     context={"badges": data})
+
+def add_user(request):
+    if request.method == "POST":
+        # use the existing sign up form for efficiency
+        form = SignUpForm(request.POST)
+        # get the selected group
+        group = request.POST["group"]
+        if form.is_valid():
+            user = form.save() # save the new user
+            # add the new user to the given group
+            group = Group.objects.get(name=group)
+            user.groups.add(group)
+            messages.success(request, "User adding successful.")
+            return redirect('/settings/') # redirects to the settings page
+        else: #if the error is with the user's entries
+            messages.error(request, form.errors)
+            messages.error(request, "invalid - user")
+            print(form.errors)
+    form = SignUpForm()
+    return render(request=request, template_name="registration/add_user.html",
+    context={"user_form": form})
+
+def del_user(request):
+    if request.method == "POST":
+        # remove the correct user
+        User.objects.filter(id=request.POST["user"]).delete()
+        messages.success(request, "User deleting successful.")
+        return redirect('/settings/') # redirects to the settings page
+    data = User.objects.all()
+    return render(request=request, template_name="registration/del_user.html",
+    context={"users": data})
+
+def edit_user(request):
+    if request.method == "POST":
+        # find the user, group, and action
+        user = User.objects.get(id=request.POST["user"])
+        group = Group.objects.get(name=request.POST["group"])
+        action = request.POST["action"]
+        if (action == 'add'):
+            # add user to the new group
+            user.groups.add(group)
+        else:
+            # remove the user from the group
+            user.groups.remove(group)
+        messages.success(request, "User editing successful.")
+        return redirect('/settings/') # redirects to the settings page
+    users = User.objects.all()
+    return render(request=request, template_name="registration/edit_user.html",
+    context={"users": users})
+
+def scanning(request):
+    if request.method == "POST":
+        # saving the fact the user visited a location
+        location = Location.objects.get(location_name=request.POST["location"])
+        name = request.session.get('username')
+        user = User.objects.get(username=name)
+        player = Player.objects.get(user=user)
+        current_datetime = datetime.datetime.now() 
+        # make the visit
+        visit = Visit.objects.create(player=player, location=location, visit_datetime=current_datetime)
+        # save the player's new score
+        player.set_score(location)
+        player.save()
+        messages.success(request, "Visit logging successful.")
+        return redirect('/locations/') # redirects to the home page
+    return render(request=request, template_name="registration/scanning.html")

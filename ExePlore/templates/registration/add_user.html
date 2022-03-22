@@ -1,0 +1,27 @@
+{% extends 'registration/header.html' %} <!-- use standard header -->
+{% block content %} <!-- begin content -->
+{% load crispy_forms_tags %} <!-- use django's form functionality -->
+
+<!-- mobile-container to look like a phone -->
+<div class="mobile-container">
+    <!-- sign up form from forms.py -->
+    <h1 class="white">Add User</h1>
+    <form method="POST">
+        {% csrf_token %}
+        {{ user_form|crispy }} <!-- load in form -->
+        <label for="group">Choose a group:</label>
+        <select name="group" id="group">
+            <option value="Player">Player</option>
+            <option value="Gamekeeper">Gamekeeper</option>
+        </select>
+        <br>
+        <button class="submit" type="submit">Submit</button>
+    </form>
+    <script>
+		// this script ensures emails are exeter university ones
+		var email = document.getElementById('id_email');
+		email.pattern = "[a-z0-9._%+-]+@exeter.ac.uk$";
+	</script>
+</div>
+
+{% endblock %}

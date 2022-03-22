@@ -9,7 +9,7 @@
         <!-- link to settings page i.e. this one -->
         <button class="icon icon-selected"><a href="/home"><img src="{% static 'images/home.png' %}"></a></button><!--
         TODO: open camera
-        --><button class="icon"><a><img src="{% static 'images/qr.png' %}"></a></button><!--
+        --><button class="icon"><a href="/scanning"><img src="{% static 'images/qr.png' %}"></a></button><!--
         link to locations page
         --><button class="icon"><a href="/locations"> <img src="{% static 'images/locations.png' %}"></a></button><!--
         link to badges page
@@ -43,7 +43,16 @@
             0
             {% endif %}  </p>
         </div>
+        {% if developer %}
+        <div id="edit_users">
+            <h3 class="grey">Edit Users</h3>
+            <button class="small" type="add_user"><a href="/add_user">New User</a></button>
+            <button class="small" type="del_user"><a href="/del_user">Delete User</a></button>
+            <button class="small" type="edit_user"><a href="/edit_user">Edit User</a></button>
+        </div>
         <br>
+        {% else %}
+        {% endif %}
         <!-- display the badges they've earned, in a list with icons -->
         <div id="badges_earned">
             <h3 class="grey">Badges earned </h3>

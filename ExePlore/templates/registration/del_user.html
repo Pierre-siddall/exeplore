@@ -1,0 +1,26 @@
+{% extends 'registration/header.html' %} <!-- use standard header -->
+{% block content %} <!-- begin content -->
+
+<!-- mobile-container to look like a phone -->
+<div class="mobile-container">
+    <h1 class="white">Delete User</h1>
+    <form method="POST">
+        <!-- does not use a form but uses a loaded list of badges -->
+        {% csrf_token %}
+        {% if users %}
+        <label for="user">Choose a user:</label>
+        <!-- create a select option for the user to be deleted -->
+        <select name="user" id="user">
+            {% for u in users %}
+            <option value="{{u.id}}">{{u.username}}</option>
+            {% endfor %}
+        </select>
+        <br>
+        <button class="submit" type="submit">Delete</button>
+        {% else %}
+        No Data
+        {% endif %}
+    </form>
+</div>
+
+{% endblock %}
