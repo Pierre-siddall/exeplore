@@ -278,3 +278,7 @@ def scanning(request):
         messages.success(request, "Visit logging successful.")
         return redirect('/locations/')  # redirects to the home page
     return render(request=request, template_name="registration/scanning.html")
+
+def leaderboard(request):
+    player = Player.objects.all().order_by('-score')
+    return render(request=request, template_name="registration/leaderboard.html", context={"player": player})
