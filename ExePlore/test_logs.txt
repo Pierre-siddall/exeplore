@@ -13,3 +13,15 @@ Scanning a      Scan qr code    Loc name shows      Loc name shows      22/03
     location                        at bottom           at bottom
 Scanning it     Scan same one   Only appears in     Only appears in     22/03
     twice           twice           loc list once       loc list once
+Generate QR     Scan test       Location becomes    Location becomes    22/03
+    codes work                      opaque              opaque
+Bitly link      Click the link  Takes you to the    Takes you to the    22/03
+                                    splash screen       splash screen
+Badge           Scan truro      Navigator badge     Navigator badge     22/03
+    recording       location        won                 won
+Link back to    Click home      User is taken to    User is taken to    22/03
+    home page       links           home page           home page
+Logo added      Go to home      Logo shows at top   Logo shows at top   22/03
+                    and splash
+CSS updated     Check whole     Colours are pink    Colours are pink    22/03
+                    site            and orange          and orange

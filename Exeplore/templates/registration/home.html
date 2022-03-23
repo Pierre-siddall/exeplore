@@ -5,21 +5,28 @@
 <head>
     <!-- This includes the import that is required for Google Maps Clustering-->
     <script src="https://unpkg.com/@googlemaps/markerclusterer/dist/index.min.js"></script>
+    <style>
+        #map div div div div div div div div div div div div{
+            color: black;
+        }
+    </style>
 </head>
+  
 
 <!-- mobile-container to look like a phone -->
 <div class="mobile-container">
     <!-- navigation bar -->
     <div class="topnav" id="links">
         <!-- link to settings page -->
-        <button class="icon"><a href="/settings"><img src="{% static 'images/settings.png' %}"></a></button><!--
+        <a href="/settings"><button class="icon"><img src="{% static 'images/settings.png' %}" class="top-icon"></button></a><!--
         TODO: open camera
-        --><button class="icon"><a href="/scanning"><img src="{% static 'images/qr.png' %}"></a></button><!--
+        --><a href="/scanning"><button class="icon"><img src="{% static 'images/qr.png' %}" class="top-icon"></button></a><!--
         link to locations page
-        --><button class="icon"><a href="/locations"> <img src="{% static 'images/locations.png' %}"></a></button><!--
+        --><a href="/locations"><button class="icon"><img src="{% static 'images/locations.png' %}" class="top-icon"></button></a><!--
         link to badges page
-        --><button class="icon"><a href="/badges"><img src="{% static 'images/badges.png' %}"></a></button>
+        --><a href="/badges"><button class="icon"><img src="{% static 'images/badges.png' %}" class="top-icon"></button></a>
     </div>
+    <div class="header-logo"><img src="{% static 'images/logo title.png' %}" class="header-logo"></div>
     <div id="location">
         <h1 class="grey">Welcome
         {% if user %}
@@ -32,7 +39,7 @@
         <!-- script for fetching a mao API from Google -->
         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCmLbmAbTlKJPB5N5bpwef5tfmn5DG_Y8c&callback=initialiseMap" async></script>
         <!-- script for styling the map -->
-        <script src="{% static 'javascript/map.js' %}" data-lats='{{lats}}' data-lngs='{{lngs}}'></script>
+        <script src="{% static 'javascript/map.js' %}" data-lats='{{lats}}' data-lngs='{{lngs}}' data-names='{{lct_name}}'></script>
     </div>
 </div>
 
