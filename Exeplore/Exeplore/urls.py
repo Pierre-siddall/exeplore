@@ -44,7 +44,6 @@ urlpatterns = [
     path('edit_user/', views.edit_user, name = 'edit_user'),
     path('scanning/', views.scanning, name = 'scanning'),
     path('leaderboard/', views.leaderboard, name ='leaderboard'),
-    # Change Password
     path(
         'change_password/',
         auth_views.PasswordChangeView.as_view(
@@ -53,4 +52,5 @@ urlpatterns = [
         ),
         name='change_password'
     ),
+    path('show_qr/', views.show_qr, name = 'show_qr')
 ]+ static(settings.MEDIA_URL, document_root= settings.MEDIA_ROOT)
