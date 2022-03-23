@@ -18,6 +18,7 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 from . import views
+from django.contrib.auth import views as auth_views
 
 
 app_name="main"
@@ -43,5 +44,13 @@ urlpatterns = [
     path('edit_user/', views.edit_user, name = 'edit_user'),
     path('scanning/', views.scanning, name = 'scanning'),
     path('leaderboard/', views.leaderboard, name ='leaderboard'),
+    path(
+        'change_password/',
+        auth_views.PasswordChangeView.as_view(
+            template_name='registration/change_password.html',
+            success_url = '../home'
+        ),
+        name='change_password'
+    ),
     path('show_qr/', views.show_qr, name = 'show_qr')
 ]+ static(settings.MEDIA_URL, document_root= settings.MEDIA_ROOT)
