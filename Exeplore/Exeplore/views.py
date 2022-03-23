@@ -295,6 +295,7 @@ def check_badges(user):
                         achievement = EarnedBadge(
                             player=player, badge=earned_badge, badge_earned_datetime=datetime.now())
                         achievement.save()
+                        break
             elif earned_badge.badge_name == "Apprentice Astronaut":
                 if list_of_visits.count() >= 25:
                     achievement = EarnedBadge(
@@ -309,7 +310,9 @@ def check_badges(user):
                 list_of_player = Player.objects.all()
                 scanmaster = player
                 for p_in_list in list_of_player:
-                    if Visit.objects.filter(player=p_in_list).count() >= list_of_visits.count():
+                    count1 = Visit.objects.filter(player=p_in_list).count()
+                    count2 = list_of_visits.count()
+                    if count1 > count2:
                         scanmaster = p_in_list
                 if scanmaster == player:
                     achievement = EarnedBadge(
@@ -339,10 +342,9 @@ def check_badges(user):
             elif earned_badge.badge_name == "Creature of Habit":
                 most_common = Visit.objects.filter(player=player).values(
                     'location').annotate(num_occur=Count('location')).order_by('-num_occur')
-                #top_location = most_common[0]['location']
-                top_location_count = Visit.objects.filter(
-                    location=most_common[0]['location']).count()
-                if top_location_count/list_of_visits.count() >= 0.75:
+                top_location_count = Visit.objects.filter(player=player,
+                    location=most_common[0]['location']).count()                
+                if top_location_count/list_of_visits.count() >= 0.75:   
                     achievement = EarnedBadge(
                         player=player, badge=earned_badge, badge_earned_datetime=datetime.now())
                     achievement.save()
@@ -377,6 +379,8 @@ def check_badges(user):
                         achievement = EarnedBadge(
                             player=player, badge=earned_badge, badge_earned_datetime=datetime.now())
                         achievement.save()
+                        break
+                        
             # elif b.badge_name == "Sputnik":
             elif earned_badge.badge_name == "Master Astronaut":
                 if list_of_visits.count() >= 100:

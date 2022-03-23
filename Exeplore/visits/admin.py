@@ -39,6 +39,7 @@ class LocationAdmin(admin.ModelAdmin):
     """This class defines how Locations are managed, and how their many-to-many
     relationship should be displayed in admin"""
     model = Location
+    ordering = ('location_name',)
     inlines = [VisitInLine, ]
 
 admin.site.register(Badge, BadgeAdmin)
