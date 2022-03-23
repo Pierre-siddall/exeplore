@@ -343,6 +343,7 @@ def check_badges(user):
                 top_location_count = Visit.objects.filter(
                     location=most_common[0]['location']).count()
                 if top_location_count/list_of_visits.count() >= 0.75:
+                    print( top_location_count, list_of_visits.count(), top_location_count/list_of_visits.count())
                     achievement = EarnedBadge(
                         player=player, badge=earned_badge, badge_earned_datetime=datetime.now())
                     achievement.save()
