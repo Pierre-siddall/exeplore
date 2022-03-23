@@ -26,7 +26,6 @@
             {% if user %}
             {{user.first_name}}
             <!-- link to a page where the user chan change their information -->
-            <a href="/change_password"><button class="small" type="change">Change PWD</button></a>
             {% else %}
             No Name
             {% endif %}</p>
@@ -43,6 +42,12 @@
             0
             {% endif %}  </p>
         </div>
+        <div id="settings">
+            <h3 class="grey">User Settings </h3>
+            <a href="/change_password"><button class="small" type="change">Change PWD</button></a>
+            <button class="small" type="change" onclick="changeFont()">Dyslexie Font</button>
+        </div>
+        <br><br>
         {% if developer %}
         <div id="edit_users">
             <h3 class="grey">Edit Users</h3>
@@ -104,5 +109,30 @@
         <a href="/splash"><button class="submit" type="exit">Exit</button></a>
     </div>
 </div>
+
+<script>
+    function changeFont(){
+        let decoded = decodeURIComponent(document.cookie);
+        let cookies = decoded.split(';');
+        let font = "";
+        for(let i = 0; i <cookies.length; i++) {
+            let c = cookies[i];
+            while (c.charAt(0) == ' ') {
+                c = c.substring(1);
+            }
+            if (c.indexOf("font=") == 0) {
+                font = c.substring(name.length, c.length);
+            }
+        }
+        if (font == "font=default") {
+            document.cookie = "font=dyslexie;path=/;";
+            alert("Dyslexie font set - reload the page");
+        } else {
+            document.cookie = "font=default;path=/;";
+            alert("Default font set - reload the page");
+        }
+    }
+</script>
+
     
 {% endblock %}

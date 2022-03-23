@@ -6,10 +6,9 @@
     padding: 12px;
     margin: auto;
     background-color: rgb(35, 46, 62,.8);
-    
     z-index: 100;
-    
 }
+
 /*--- standard background for all pages ---*/
 body {
     background-image: url(../images/stars_bg.png);
@@ -250,7 +249,7 @@ div#location p.incomplete {
 
 
 /* settings page headers */
-div#recent_vists h3, div#badges_earned h3, div#user_info h3, div#edit_users h3, div#leaderboard_area h3 {
+div#recent_vists h3, div#badges_earned h3, div#user_info h3, div#edit_users h3, div#leaderboard_area h3, div#settings h3 {
     text-align: center;
 }
 

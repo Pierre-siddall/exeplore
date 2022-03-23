@@ -12,9 +12,29 @@
 		<!-- custom CSS sheets -->
 		<link rel="stylesheet" href="{% static 'css/stylesheet.css'%}" type="text/css">
 		<link rel="stylesheet" href="{% static 'css/showmap.css' %}">
+		<link rel="stylesheet" media="screen" href="https://fontlibrary.org//face/opendyslexic" type="text/css"/>
 	</head>
 	<body>
 		{% block content %} <!-- page content goes here -->
-		{% endblock %} 
+		{% endblock %}
 	</body>
+	<script>
+		let decoded = decodeURIComponent(document.cookie);
+        let cookies = decoded.split(';');
+        let font = "";
+        for(let i = 0; i <cookies.length; i++) {
+            let c = cookies[i];
+            while (c.charAt(0) == ' ') {
+                c = c.substring(1);
+            }
+            if (c.indexOf("font=") == 0) {
+                font = c.substring(name.length, c.length);
+            }
+        }
+        if (font == "font=dyslexie") {
+			document.body.style.fontFamily = "OpenDyslexic3Regular";
+        } else {
+			document.body.style.fontFamily = "verdana";
+        }
+	</script>
 </html>
