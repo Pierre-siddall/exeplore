@@ -2,23 +2,30 @@
 {% load static %} <!-- for accessing the settings image -->
 {% block content %} <!-- begin content -->
 
-    <!-- mobile-container to look like a phone -->
-    <div class="mobile-container">
-        <!-- navigation bar has only settings -->
-        <div class="topnav" id="links">
-            <button class="icon"><a href="/settings"><img src="{% static 'images/settings.png' %}"></a></button>
-        </div>
-        <div class="header-logo"><img src="{% static 'images/logo title.png' %}" class="header-logo"></div>
-        <h1 class="grey">Leaderboard</h1>
-        <!-- Renders out the leaderboard -->
+<!-- mobile-container to look like a phone -->
+<div class="mobile-container">
+        <!-- navigation bar -->
+    <div class="topnav" id="links">
+        <!-- link to settings page i.e. this one -->
+        <a href="/settings"><button class="icon icon-selected"><img src="{% static 'images/settings.png' %}" class="top-icon"></button></a><!--
+        TODO: open camera
+        --><a href="/scanning"><button class="icon"><img src="{% static 'images/qr.png' %}" class="top-icon"></button></a><!--
+        link to locations page
+        --><a href="/locations"><button class="icon"><img src="{% static 'images/locations.png' %}" class="top-icon"></button></a><!--
+        link to badges page
+        --><a href="/badges"><button class="icon"><img src="{% static 'images/badges.png' %}" class="top-icon"></button></a>
+    </div>
+    <div class="header-logo"><img src="{% static 'images/logo title.png' %}" class="header-logo"></div>
+    <h1 class="grey">Leaderboard</h1>
+        <!-- renders the leaderboard -->
         {% if player %}
         {% for p in player %}
-        <p>
-             {{ p.user.username }} {{ p.score }}
-        </p>
+        <p style="float: left; padding-left: 50px;">{{ p.user.username }}</p>
+        <p style="float: right; padding-right: 50px;">{{ p.score }}</p>
+        <br><br>
         {% endfor %}
         {% else %}
         {% endif %}
-    </div>
+</div>
 
 {% endblock %}
