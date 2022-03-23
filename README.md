@@ -12,3 +12,9 @@ Python (Using Django), HTML/CSS, JavaScript
 
 # Potential dependencies:
 Django-crispy-forms
+Google maps API Javascript
+
+You install Django-crispy-forms using the following command: 
+"""console
+:~$ pip install django-crispy-forms
+"""
