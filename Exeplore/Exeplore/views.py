@@ -408,7 +408,7 @@ def scanning(request):
         messages.success(request, "Visit logging successful.")
         if (request.POST["answer"] == request.POST["radio"]):
             messages.success(request, "Correct answer! Well done!")
-            # double points from the location when the question is correct:
+            #double points from the location when the question is correct:
             player.set_score(location)
             player.save()
         else:

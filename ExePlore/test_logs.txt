@@ -25,3 +25,7 @@ Logo added      Go to home      Logo shows at top   Logo shows at top   22/03
                     and splash
 CSS updated     Check whole     Colours are pink    Colours are pink    22/03
                     site            and orange          and orange
+Taking a quiz   Scan and answer Score increased by  Score increased by  23/03
+    (right)         correctly       20 points           20 points
+Taking a quiz   Scan and answer Score increased by  Score increased by  23/03
+    (wrong)         incorrectly     10 points           10 points
