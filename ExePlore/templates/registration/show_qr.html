@@ -1,0 +1,25 @@
+{% extends 'registration/header.html' %} <!-- use standard header -->
+{% load static %} <!-- for accessing the header images -->
+{% block content %} <!-- begin content -->
+
+<!-- mobile-container to look like a phone -->
+<div class="mobile-container">
+    <!-- navigation bar -->
+    <div class="topnav" id="links">
+        <!-- link to settings page -->
+       <a href="/settings"><button class="icon icon-selected"><img src="{% static 'images/settings.png' %}" class="top-icon"></button></a><!--
+        link to scanning
+        --><a href="/scanning"><button class="icon"><img src="{% static 'images/qr.png' %}" class="top-icon"></button></a><!--
+        link to locations page
+        --><a href="/locations"><button class="icon"><img src="{% static 'images/locations.png' %}" class="top-icon"></button></a><!--
+        link to home page
+        --><a href="/badges"><button class="icon"><img src="{% static 'images/home.png' %}" class="top-icon"></button></a>
+
+    </div>
+    <div id="badges">
+        <h1 class="grey">Your QR Code</h1>
+        <img src="{% static 'images/qr_gen.png' %}" style="width:575px;">
+    </div>
+</div>
+    
+{% endblock %}

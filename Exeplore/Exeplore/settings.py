@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'Exeplore',
     'crispy_forms',
+    'qrcode',
 ]
 
 MIDDLEWARE = [

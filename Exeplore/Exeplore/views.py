@@ -1,5 +1,6 @@
 """This file houses the views for the app, including the User registration,
 login, and rendering of other pages"""
+import qrcode
 from datetime import datetime, timezone, timedelta
 from django.contrib.auth.forms import AuthenticationForm
 from django.shortcuts import render, redirect
@@ -167,19 +168,33 @@ def badges(request):
 
 def add_location(request):
     """This view is for gamekeepers and developers to add locations"""
+    qr = qrcode.QRCode(
+        version=4,
+        error_correction=qrcode.constants.ERROR_CORRECT_L,
+        box_size=15,
+        border=4,
+    )
     if request.method == "POST":
         form = AddLocationForm(request.POST, request.FILES)
         if form.is_valid():
+            location = request.POST["location_name"]
             form.save()  # add a location
+            qr.add_data(location)
+            qr.make(fit=True)
+            img = qr.make_image(back_color="white", fill_color="black")
+            img.save('Exeplore/static/images/qr_gen.png')
             messages.success(request, "Location adding successful.")
-            return redirect('/settings/')  # redirects to the settings page
+            return redirect('/show_qr/')  # redirects to show th qr code
         else:  # if the error is with the user's entries
             messages.error(request, form.errors)
             messages.error(request, "invalid - location")
             print(form.errors)
     form = AddLocationForm()
     return render(request=request, template_name="registration/add_location.html",
-                  context={"location_form": form})
+                context={"location_form": form})
+
+def show_qr(request):
+    return render(request=request, template_name="registration/show_qr.html")
 
 
 def del_location(request):
