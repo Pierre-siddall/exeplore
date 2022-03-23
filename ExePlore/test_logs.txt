@@ -38,3 +38,15 @@ Description     Click Sputnik   Alert - "scan your  Alert - "scan your  23/03
     alert           badge           daily code..."      daily code..."
 Points alert    Click Amory     Alert - "Worth 10   Alert - "Worth 10   23/03
                     building            points"         points"
+Navigator       Scan truro      Navigator won       Navigator won       23/03
+    badge           campus
+Participation   Scan any code   Participation       Participation       23/03
+    badge                           won                 won
+Top of the      Scan physics    Top of the world    Top of the world    23/03
+    world badge                     won                 won
+Hipster         Scan costa      Hipster won         Hipster won         23/03
+    badge
+New location    GK make new     QR code with name   QR code with name   23/03
+    QR code         location        as data             as data
+User change     Change          Log in with new     Log in with new     23/03
+    password        password        password            password
