@@ -20,7 +20,7 @@
         {% if locations %} <!-- checks data was loaded -->
         {% if visits %}
         {% for v in visits %}
-        <p class="complete">
+        <p class="complete" onclick="alert('Worth {{v.point_value}} points')">
            <img src="../../media/{{ v.icon }}"style="opacity:1">
             {{v.location_name}}
         </p>
@@ -29,7 +29,7 @@
         {% endif %}
 
         {% for l in locations %}
-        <p class="incomplete"> <!-- list the location name -->
+        <p class="incomplete" onclick="alert('Worth {{l.point_value}} points')"> <!-- list the location name -->
             <img src="../../media/{{ l.icon }}">
             {{l.location_name}}
         </p>
