@@ -94,7 +94,8 @@ def home(request):
         lats.append(float(location.get_lat()))
         lngs.append(float(location.get_long()))
         location_names.append(location.get_name())
-    return render(request, "registration/home.html", {'user': user, 'lats': lats, 'lngs': lngs, 'lct_name': location_names})
+    return render(request, "registration/home.html", {'user': user, 'lats': lats,
+    'lngs': lngs, 'lct_name': location_names})
 
 
 def splash(request):
@@ -117,8 +118,8 @@ def settings(request):
         earned_badges = EarnedBadge.objects.filter(player=player)
         visits = Visit.objects.filter(player=player)
         return render(request, "registration/settings.html", {'user': user,
-                                                              'earnedBadges': earned_badges, 'visits': visits, 'permission': permission,
-                                                              'developer': developer})
+        'earnedBadges': earned_badges, 'visits': visits, 'permission': permission,
+        'developer': developer})
     except:
         return render(request, "registration/splash.html")
 
@@ -132,18 +133,19 @@ def locations(request):
     player = Player.objects.get(user=user)
     visits = Visit.objects.filter(player=player)
     all_locations = []
-    for v in visits:
+    for visit in visits:
         found = False
-        for a in all_locations:
-            if a.location_name == v.location.location_name:
+        for a_location in all_locations:
+            if a_location.location_name == visit.location.location_name:
                 found = True
                 break
         if not found:
-            all_locations.append(v.location)
+            all_locations.append(visit.location)
     for item in data:
         if item in all_locations:
             data.remove(item)
-    return render(request, "registration/locations.html", {'locations': data, 'visits': all_locations})
+    return render(request, "registration/locations.html",
+    {'locations': data, 'visits': all_locations})
 
 
 def badges(request):
@@ -406,7 +408,7 @@ def scanning(request):
         visit.save()
         check_badges(user)
         messages.success(request, "Visit logging successful.")
-        if (request.POST["answer"] == request.POST["radio"]):
+        if request.POST["answer"] == request.POST["radio"]:
             messages.success(request, "Correct answer! Well done!")
             #double points from the location when the question is correct:
             player.set_score(location)
@@ -419,6 +421,8 @@ def scanning(request):
 
 
 def leaderboard(request):
+    """This returns the leadboard page"""
     # list of players ordered by score
     player = Player.objects.all().order_by('-score')
-    return render(request=request, template_name="registration/leaderboard.html", context={"player": player})
+    return render(request=request, template_name="registration/leaderboard.html",
+     context={"player": player})
