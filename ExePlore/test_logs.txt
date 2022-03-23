@@ -31,6 +31,6 @@ Taking a quiz   Scan and answer Score increased by  Score increased by  23/03
     (wrong)         incorrectly     10 points           10 points
 Button clicks   Click each next Buttons all work    Locations->badges   23/03
                     to the text                         didn't
-    attempt 2   ''           '' ''              ''  Dev and GK Only     23/03
+    attempt 2   ''           '' ''              ''  Dev and GK only     23/03
                                                         didn't
     attempt 3   ''           '' ''              ''  Buttons all work    23/03
