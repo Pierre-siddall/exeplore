@@ -1,2 +1,6 @@
 Django>=3.0,<4.0
 django-crispy-forms==1.9.2
+Pillow==8.1.0
+Pillow-PIL==0.1.dev0
+PillowImage==1.1.9
+qrcode == 6.1
