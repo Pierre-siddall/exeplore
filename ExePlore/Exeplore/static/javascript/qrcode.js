@@ -19,14 +19,14 @@ docReady(function() {
             
         },
         {
-            question : "Who opened the students' guild?",
+            question : "Who opened the Students' Guild?",
             correct : "3",
             answer1 : "Prince Phillip",
             answer2 : "Princess Margret",
             answer3 : "Queen Elizabeth the 2nd"
         },
         {
-            question : "Who opened the forum?",
+            question : "Who opened the Forum?",
             correct : "2",
             answer1 : "Prince Phillip",
             answer2 : "Queen Elizabeth the 2nd",
@@ -89,7 +89,7 @@ docReady(function() {
             answer3 : "Radiohead"
         },
         {
-            question : "Who played at the Lemmon Grove?",
+            question : "Who has played at the Lemmon Grove?",
             correct : "2",
             answer1 : "The Kooks",
             answer2 : "Radiohead",
@@ -97,7 +97,7 @@ docReady(function() {
         },
         {
             
-            question : "Which Weatherspoon's used to be part of the university's campus?",
+            question : "Which Weatherspoon's used to be part of The University's campus?",
             correct : "1",
             answer1 : "The Imperial Weatherspoon's",
             answer2 : "The Chevalier Inn",

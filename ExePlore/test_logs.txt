@@ -50,3 +50,7 @@ New location    GK make new     QR code with name   QR code with name   23/03
     QR code         location        as data             as data
 User change     Change          Log in with new     Log in with new     23/03
     password        password        password            password
+Font change     Click button    On each page font   On each page font   23/03
+                    + reload        is dyslexie         is dyslexie
+    part 2      Click button    On each page font   On each page font   23/03
+                    + reload        is verdana          is verdana
