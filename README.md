@@ -15,6 +15,6 @@ Django-crispy-forms
 Google maps API Javascript
 
 You install Django-crispy-forms using the following command: 
-"""console
+'''console
 :~$ pip install django-crispy-forms
-"""
+'''
