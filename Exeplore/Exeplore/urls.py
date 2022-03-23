@@ -42,5 +42,6 @@ urlpatterns = [
     path('del_user/', views.del_user, name = 'del_user'),
     path('edit_user/', views.edit_user, name = 'edit_user'),
     path('scanning/', views.scanning, name = 'scanning'),
-    path('leaderboard/',views.leaderboard,name ='leaderboard')
+    path('quizzes/', views.quizzes, name = 'quizzes')
+    path('leaderboard/', views.leaderboard, name ='leaderboard')
 ]+ static(settings.MEDIA_URL, document_root= settings.MEDIA_ROOT)

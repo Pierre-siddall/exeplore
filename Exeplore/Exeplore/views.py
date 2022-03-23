@@ -276,9 +276,17 @@ def scanning(request):
         player.set_score(location)
         player.save()
         messages.success(request, "Visit logging successful.")
-        return redirect('/locations/')  # redirects to the home page
+        if (request.POST["answer"] == request.POST["radio"]):
+                messages.success(request, "Correct answer! Well done!")
+                #double points from the location when the question is correct:
+                player.set_score(location)
+                player.save()
+        else:
+            messages.success(request, "Incorrect answer! Better luck next time!")
+        return redirect('/locations/') # redirects to the locations page
     return render(request=request, template_name="registration/scanning.html")
 
 def leaderboard(request):
+    # list of players ordered by score
     player = Player.objects.all().order_by('-score')
     return render(request=request, template_name="registration/leaderboard.html", context={"player": player})
