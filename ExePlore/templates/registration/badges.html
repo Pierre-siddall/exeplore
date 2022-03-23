@@ -20,7 +20,7 @@
         <h1 class="grey">Badges</h1>
         {% if earnedBadges %}
         {% for eb in earnedBadges %}
-        <p>
+        <p onclick="alert('{{eb.description}}')">
         <img src="../../media/{{ eb.icon }}"style="opacity:1">
         {{eb.badge_name}}
         </p>
@@ -30,7 +30,7 @@
 
         {% if badges %}
         {% for b in badges %}
-        <p class="incomplete">
+        <p class="incomplete" onclick="alert('{{b.description}}')">
         <img src="../../media/{{ b.icon }}">
         {{b.badge_name}}
         </p>
