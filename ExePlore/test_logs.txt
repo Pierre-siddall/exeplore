@@ -34,5 +34,7 @@ Button clicks   Click each next Buttons all work    Locations->badges   23/03
     attempt 2   ''           '' ''              ''  Dev and GK only     23/03
                                                         didn't
     attempt 3   ''           '' ''              ''  Buttons all work    23/03
-Description     Click Sputnik   alert - "scan your  alert - "scan your  23/03
+Description     Click Sputnik   Alert - "scan your  Alert - "scan your  23/03
     alert           badge           daily code..."      daily code..."
+Points alert    Click Amory     Alert - "Worth 10   Alert - "Worth 10   23/03
+                    building            points"         points"
