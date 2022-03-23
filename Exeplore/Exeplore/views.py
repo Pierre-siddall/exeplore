@@ -277,10 +277,10 @@ def scanning(request):
         player.save()
         messages.success(request, "Visit logging successful.")
         if (request.POST["answer"] == request.POST["radio"]):
-                messages.success(request, "Correct answer! Well done!")
-                #double points from the location when the question is correct:
-                player.set_score(location)
-                player.save()
+            messages.success(request, "Correct answer! Well done!")
+            #double points from the location when the question is correct:
+            player.set_score(location)
+            player.save()
         else:
             messages.success(request, "Incorrect answer! Better luck next time!")
         return redirect('/locations/') # redirects to the locations page

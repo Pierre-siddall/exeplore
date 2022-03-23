@@ -151,7 +151,7 @@ class ClientTestCase(TestCase):
             username = self.session['username']
 
     def test_scan_location(self):
-        response = self.c.post('/scanning/', {'location':'location'})
+        response = self.c.post('/scanning/', {'location':'location', 'answer':'1', 'radio':'1'})
         self.assertRedirects(response, '/locations/', status_code=302, target_status_code=200, msg_prefix='', fetch_redirect_response=True)
         # get the visits currently set
         visits = Visit.objects.filter(player=self.player)
