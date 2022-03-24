@@ -445,3 +445,11 @@ def leaderboard(request):
     player = Player.objects.all().order_by('-score')
     return render(request=request, template_name="registration/leaderboard.html",
      context={"player": player})
+
+def privacy(request):
+    """This returns the privacy policy page"""
+    return render(request=request, template_name="registration/privacy.html")
+
+def terms(request):
+    """This returns the terms of service page page"""
+    return render(request=request, template_name="registration/terms.html")

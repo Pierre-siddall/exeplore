@@ -1,0 +1,11 @@
+{% extends 'registration/header.html' %} <!-- use standard header -->
+{% load static %} <!-- for accessing the settings image -->
+{% block content %} <!-- begin content -->
+
+<!-- mobile-container to look like a phone -->
+<div class="mobile-container">
+    <!-- embed tos -->
+    <embed type="text/html" src="{% static 'embed/privacy.html' %}" width="550" height="700">
+</div>
+
+{% endblock %}

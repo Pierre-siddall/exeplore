@@ -52,5 +52,7 @@ urlpatterns = [
         ),
         name='change_password'
     ),
-    path('show_qr/', views.show_qr, name = 'show_qr')
+    path('show_qr/', views.show_qr, name = 'show_qr'),
+    path('privacy/', views.privacy, name = 'privacy'),
+    path('terms/', views.terms, name = 'terms')
 ]+ static(settings.MEDIA_URL, document_root= settings.MEDIA_ROOT)
