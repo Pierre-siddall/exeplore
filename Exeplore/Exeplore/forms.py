@@ -24,7 +24,7 @@ class PlayerForm(forms.ModelForm):
         #imports the signupform, excludes the forms that the user doesn't need to see
         #Doesn't use explicit fields as there's no fields for the player form to have that
         #the sign up form doesn't have, and that can be changed upon registration
-        exclude = ('score', 'user', 'badges', 'visits' )
+        exclude = ('score', 'user', 'badges', 'visits', 'streak' )
 
 class AddLocationForm(forms.ModelForm):
     """ This class represents the new location form """
